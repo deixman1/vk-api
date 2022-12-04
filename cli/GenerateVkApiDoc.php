@@ -27,6 +27,7 @@ class GenerateVkApiDoc extends Command
         'global',
         'subcodes',
         'required', //todo save required
+        'discriminator', //todo
     ];
 
     public function __construct()
@@ -60,25 +61,6 @@ class GenerateVkApiDoc extends Command
                 'schemas' => [],
             ],
         ];
-
-//        $objectData = $this->prepareComponents($objectData['definitions']);
-//        $result['components']['schemas'] = array_merge_recursive($result['components']['schemas'], $objectData);
-//        $responseData = $this->prepareComponents($responseData['definitions']);
-//        $result['components']['schemas'] = array_merge_recursive($result['components']['schemas'], $responseData);
-//        $methodData = $this->recursiveReplaceRef($methodData);
-//        foreach ($methodData['methods'] as $method) {
-//            $get = [];
-//            if (isset($method['parameters'])) {
-//                $get['parameters'] = $this->prepareParameters($method['parameters'], $result);
-//            }
-//            $responses = $method['responses']['response'] ?? ['description' => null];
-//            $get['responses'] = [200 => $responses];
-//            $result['paths'] += [
-//                self::VK_METHOD . $method['name'] => [
-//                    'get' => $get,
-//                ],
-//            ];
-//        }
 
         $result['components']['schemas'] = $data['definitions'] + $data['errors'];
         $result['paths'] = $this->prepareMethods($data['methods'], $result);
@@ -139,8 +121,6 @@ class GenerateVkApiDoc extends Command
                     unset($paramValue['$ref']);
                 }
 
-//                $paramValue['type'] = $this->arrayTypesToString($paramValue);
-
                 $param['schema'] = $paramValue;
             }
 
@@ -149,24 +129,6 @@ class GenerateVkApiDoc extends Command
         return $data;
     }
 
-    private function prepareComponents(array $data): array
-    {
-        foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                if (!isset($value['type'])) {
-                    $value = $value['response'] ?? $value;
-
-                    $value = [
-                        'type' => 'object',
-                        'properties' => $value,
-                    ];
-                }
-
-                $data[$key] = $this->recursiveReplace($value);
-            }
-        }
-        return $data;
-    }
 
     private function recursiveReplace(array $data): array
     {
