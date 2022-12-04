@@ -1,0 +1,21 @@
+version: "3.7"
+networks:
+  network:
+    name: ${NETWORK}
+services:
+  php:
+    container_name: ${PHP_CONTAINER}
+    build:
+      context: ./docker/php/
+      dockerfile: Dockerfile
+      args:
+        - UID=${UID}
+        - GID=${GID}
+        - PROJECT_DIR=${PROJECT_DIR}
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:${PROJECT_DIR}
+      - ./docker/php/conf.d/php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - network

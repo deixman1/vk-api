@@ -1,0 +1,34 @@
+{
+    "name": "deixman1/vk-api",
+    "description": "vk api",
+    "homepage": "https://github.com/deixman1/vk-api",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.4",
+        "vkcom/vk-api-schema": "^5.131",
+        "psr/log": "^1.0.1",
+        "psr/http-client": "^1.0",
+        "ext-json": "*",
+        "swaggest/php-code-builder": "^0.2.35",
+        "symfony/yaml": "^6.1",
+        "symfony/console": "^6.1",
+        "swaggest/json-schema": "^0.12.41"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "deixman1",
+            "homepage": "https://github.com/deixman1"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "VkApi\\": "src/",
+            "Console\\": "cli/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.1"
+    }
+}
