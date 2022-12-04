@@ -44,7 +44,9 @@ docker-add-user:
 	su ${USER}
 envsubst:
 	envsubst < $$(pwd)/docker-compose.yml
-generate-vk-api-dto:
-	$(DOCKER_CMD_PHP_CLI) php cli/app.php generate-vk-api-dto
+generate-vk-api-openapi:
+	$(DOCKER_CMD_PHP_CLI) php cli/app.php generate-vk-api-openapi
+concat-vk-api:
+	$(DOCKER_CMD_PHP_CLI) php cli/app.php concat-vk-api
 
 init: build composer-install
