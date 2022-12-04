@@ -26,8 +26,6 @@ class GenerateVkApiDoc extends Command
         'entity',
         'global',
         'subcodes',
-        'required', //todo save required
-        'discriminator', //todo
     ];
 
     public function __construct()
@@ -76,7 +74,7 @@ class GenerateVkApiDoc extends Command
         $result = [];
         foreach ($methods as $method) {
             $get = [];
-            if (isset($method['parameters'])) {
+            if (isset($method['parameters']) && $method['parameters']) {
                 $get['parameters'] = $this->prepareMethodParameters($method['parameters'], $data);
             }
 
@@ -101,15 +99,18 @@ class GenerateVkApiDoc extends Command
 
             $param['in'] = 'query';
             $param['name'] = $paramValue['name'];
-            $param['description'] = $paramValue['description'] ?? 'null';
+            $paramValue['description'] = $paramValue['description'] ?? 'null';
+            $param['description'] = $paramValue['description'];
+            if (isset($paramValue['required'])) {
+                $param['required'] = $paramValue['required'];
+            }
 
             if (isset($paramValue['type'])) {
-
-                unset($paramValue['name']);
-                if (isset($paramValue['description'])) {
-                    unset($paramValue['description']);
-                }
-
+                unset(
+                    $paramValue['name'],
+                    $paramValue['required'],
+                    $paramValue['description']
+                );
                 if (isset($paramValue['$ref'])) {
                     $exploded = explode('/', $paramValue['$ref']);
                     $temp = $result;
@@ -117,10 +118,9 @@ class GenerateVkApiDoc extends Command
                     foreach ($exploded as $key) {
                         $temp = $temp[$key];
                     }
-                    $paramValue = $paramValue + $temp;
+                    $paramValue = $temp + $paramValue;
                     unset($paramValue['$ref']);
                 }
-
                 $param['schema'] = $paramValue;
             }
 
@@ -138,6 +138,14 @@ class GenerateVkApiDoc extends Command
                 continue;
             }
             if (is_array($value)) {
+                if (isset($value['required']) && !isset($value['name'])) {
+                    unset($value['required']);
+                }
+                if ($key === 'discriminator' && isset($value['mapping'])) {
+                    foreach ($value['mapping'] as $keyMap => $map) {
+                        $value['mapping'][$keyMap] = str_replace('definitions', 'components/schemas', $map);
+                    }
+                }
                 if (isset($value['type']) && !isset($value['type']['type']) && !isset($value['type']['$ref'])) {
                     $value['type'] = $this->arrayTypesToString($value);
                 }
@@ -152,14 +160,18 @@ class GenerateVkApiDoc extends Command
                         : 'deprecated_from_version ' . $value['deprecated_from_version'];
                     unset($value['deprecated_from_version']);
                 }
-                if (isset($value['$ref']) && isset($value['description'])) {
-                    unset($value['description']);
-                }
-                if (isset($value['$ref']) && isset($value['type'])) {
-                    unset($value['type']);
-                }
-                if (isset($value['$ref']) && isset($value['default'])) {
-                    unset($value['default']); //todo save in ref
+                if (isset($value['$ref'])) {
+                    if (!isset($value['name'])) {
+                        if (isset($value['description'])) {
+                            unset($value['description']);
+                        }
+                        if (isset($value['type'])) {
+                            unset($value['type']);
+                        }
+                    }
+                    if (isset($value['default'])) {
+                        unset($value['default']); //todo save in ref
+                    }
                 }
                 $data[$key] = $this->recursiveReplace($value);
                 continue;

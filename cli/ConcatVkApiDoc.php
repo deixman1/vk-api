@@ -51,17 +51,17 @@ class ConcatVkApiDoc extends Command
         foreach ($dirs as $dir) {
             if (file_exists($dir . '/methods.json')) {
                 $methods = json_decode(file_get_contents($dir . '/methods.json'), true);
-                $result['methods'] = $result['methods'] + $methods['methods'];
+                $result['methods'] = array_merge($result['methods'], $methods['methods']);
                 unset($methods);
             }
             if (file_exists($dir . '/objects.json')) {
                 $objects = json_decode(file_get_contents($dir . '/objects.json'), true);
-                $result['definitions'] = $result['definitions'] + $objects['definitions'];
+                $result['definitions'] = array_merge($result['definitions'], $objects['definitions']);
                 unset($objects);
             }
             if (file_exists($dir . '/responses.json')) {
                 $responses = json_decode(file_get_contents($dir . '/responses.json'), true);
-                $result['definitions'] = $result['definitions'] + $responses['definitions'];
+                $result['definitions'] = array_merge($result['definitions'], $responses['definitions']);
                 unset($responses);
             }
         }
@@ -76,6 +76,11 @@ class ConcatVkApiDoc extends Command
     {
         foreach ($data as $key => $value) {
             if (is_array($value)) {
+                if ($key === 'discriminator' && isset($value['mapping'])) {
+                    foreach ($value['mapping'] as $keyMap => $map) {
+                        $value['mapping'][$keyMap] = strstr($map, '#');
+                    }
+                }
                 $data[$key] = $this->recursiveReplaceRef($value);
                 continue;
             }
