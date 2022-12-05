@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace VkApi\Keyboard;
+namespace VkApi\Old\Message\Keyboard;
 
-use VkApi\Keyboard\Buttons\Button;
+use VkApi\Old\Message\Keyboard\Buttons\Button;
 
 class Keyboard
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace VkApi\Keyboard\Buttons\Action;
+namespace VkApi\Old\Message\Keyboard\Buttons\Action;
 
 interface Action
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace VkApi\Message;
+namespace VkApi\Old\Message;
 
 use Exception;
 

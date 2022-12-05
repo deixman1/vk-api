@@ -7,12 +7,10 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
-use VkApi\Message\Message;
+use VkApi\Old\Message\Message;
 
 class VkApi
 {
-    const MESSAGES_SEND = 'messages.send';
-
     public function __construct(
         public readonly string $confirmationToken,
         public readonly string $accessToken,

@@ -26,7 +26,25 @@ class GenerateVkApiDoc extends Command
         'entity',
         'global',
         'subcodes',
+        'deprecated_from_version', //todo
     ];
+    private array $result = [
+        'openapi' => '3.0.1',
+        'info' => [
+            'title' => 'VK api',
+        ],
+        'servers' => [
+            [
+                'description' => 'Сервер VK',
+                'url' => self::VK_BASE_LINK,
+            ],
+        ],
+        'paths' => [],
+        'components' => [
+            'schemas' => [],
+        ],
+    ];
+    private array $data;
 
     public function __construct()
     {
@@ -38,44 +56,28 @@ class GenerateVkApiDoc extends Command
     {
         $output->writeln(self::NAME . ' started');
 
-        $data = json_decode(file_get_contents(__DIR__ . '/../schemas/vk-api.json'), true);
+        $this->data = json_decode(file_get_contents(__DIR__ . '/../schemas/vk-api.json'), true);
 
-        $data = $this->recursiveReplace($data);
+        $this->data = $this->recursiveReplace($this->data);
 
-        $result = [
-            'openapi' => '3.0.1',
-            'info' => [
-                'title' => 'VK api',
-                'version' => $data['version'],
-            ],
-            'servers' => [
-                [
-                    'description' => 'Сервер VK',
-                    'url' => self::VK_BASE_LINK,
-                ],
-            ],
-            'paths' => [],
-            'components' => [
-                'schemas' => [],
-            ],
-        ];
+        $this->result['info']['version'] = $this->data['version'];
 
-        $result['components']['schemas'] = $data['definitions'] + $data['errors'];
-        $result['paths'] = $this->prepareMethods($data['methods'], $result);
+        $this->result['components']['schemas'] = $this->data['definitions'] + $this->data['errors'];
+        $this->result['paths'] = $this->prepareMethods($this->data['methods']);
 
-        file_put_contents(__DIR__ . '/../schemas/vk-api.yaml', Yaml::dump($result, 255, 2));
+        file_put_contents(__DIR__ . '/../schemas/vk-api.yaml', Yaml::dump($this->result, 255, 2));
 
         $output->writeln(self::NAME . ' done');
         return Command::SUCCESS;
     }
 
-    private function prepareMethods(array $methods, array $data): array
+    private function prepareMethods(array $methods): array
     {
         $result = [];
         foreach ($methods as $method) {
             $get = [];
             if (isset($method['parameters']) && $method['parameters']) {
-                $get['parameters'] = $this->prepareMethodParameters($method['parameters'], $data);
+                $get['parameters'] = $this->prepareMethodParameters($method['parameters']);
             }
 
             $responses = $this->getResponses($method['responses'] ?? []);
@@ -93,7 +95,7 @@ class GenerateVkApiDoc extends Command
         return $result;
     }
 
-    private function prepareMethodParameters(array $data, array $result): array
+    private function prepareMethodParameters(array $data): array
     {
         foreach ($data as $paramName => $paramValue) {
 
@@ -111,16 +113,6 @@ class GenerateVkApiDoc extends Command
                     $paramValue['required'],
                     $paramValue['description']
                 );
-                if (isset($paramValue['$ref'])) {
-                    $exploded = explode('/', $paramValue['$ref']);
-                    $temp = $result;
-                    unset($exploded[0]);
-                    foreach ($exploded as $key) {
-                        $temp = $temp[$key];
-                    }
-                    $paramValue = $temp + $paramValue;
-                    unset($paramValue['$ref']);
-                }
                 $param['schema'] = $paramValue;
             }
 
@@ -138,8 +130,11 @@ class GenerateVkApiDoc extends Command
                 continue;
             }
             if (is_array($value)) {
+                if (isset($value['default']) && !$value['default']) {
+                    unset($value['default']);
+                }
                 if (isset($value['required']) && !isset($value['name'])) {
-                    unset($value['required']);
+                    unset($value['required']); //todo required in components
                 }
                 if ($key === 'discriminator' && isset($value['mapping'])) {
                     foreach ($value['mapping'] as $keyMap => $map) {
@@ -154,24 +149,25 @@ class GenerateVkApiDoc extends Command
                     $value['example'] = $value['code'];
                     unset($value['code']);
                 }
-                if (isset($value['deprecated_from_version'])) {
-                    $value['description'] = isset($value['description'])
-                        ? $value['description'] . ' deprecated_from_version ' . $value['deprecated_from_version']
-                        : 'deprecated_from_version ' . $value['deprecated_from_version'];
-                    unset($value['deprecated_from_version']);
+                if (isset($value['type']) && $value['type'] !== 'array' && isset($value['maxItems'])) {
+                    unset($value['maxItems']); //todo WHAT IS THIS SHIT!?!??!
                 }
-                if (isset($value['$ref'])) {
-                    if (!isset($value['name'])) {
-                        if (isset($value['description'])) {
-                            unset($value['description']);
-                        }
-                        if (isset($value['type'])) {
-                            unset($value['type']);
-                        }
+                if (isset($value['items']) && isset($value['type']) && $value['type'] === 'string') {
+                    $value['type'] = 'array';
+                    $value['description'] = 'STRING JSON! ' . ($value['description'] ?? '');
+                }
+                if (isset($value['items']) && isset($value['default'])) {
+                    $value['items']['default'] = $value['default'];
+                    if (isset($value['items']['$ref'])) {
+                        $value['items'] = $this->mergeRefAndParams($value['items']);
                     }
-                    if (isset($value['default'])) {
-                        unset($value['default']); //todo save in ref
-                    }
+                    unset($value['default']);
+                }
+                if (
+                    isset($value['$ref']) &&
+                    (isset($value['type']) || isset($value['default']) || isset($value['description']))
+                ) {
+                    $value = $this->mergeRefAndParams($value);
                 }
                 $data[$key] = $this->recursiveReplace($value);
                 continue;
@@ -218,5 +214,21 @@ class GenerateVkApiDoc extends Command
             $result['content']['application/json']['schema'] = array_shift($responses) ?: ['description' => 'null'];
         }
         return $result;
+    }
+
+    /**
+     * @param array $paramValue
+     * @return array
+     */
+    private function mergeRefAndParams(array $paramValue): mixed
+    {
+        $exploded = explode('/', $paramValue['$ref']);
+        $temp = $this->data;
+        unset($exploded[0]);
+        foreach ($exploded as $key) {
+            $temp = $temp[$key];
+        }
+        unset($paramValue['$ref']);
+        return array_merge($temp, $paramValue);
     }
 }

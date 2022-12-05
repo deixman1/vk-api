@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace VkApi\Keyboard\Buttons\Action\Type;
+namespace VkApi\Old\Message\Keyboard\Buttons\Action\Type;
 
-use VkApi\Keyboard\Buttons\Action\Action;
+use VkApi\Old\Message\Keyboard\Buttons\Action\Action;
 
 class Text implements Action
 {

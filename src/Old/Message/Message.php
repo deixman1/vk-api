@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace VkApi\Message;
+namespace VkApi\Old\Message;
 
-use VkApi\Keyboard\Keyboard;
-use VkApi\Message\Template\Template;
+use VkApi\Old\Message\Keyboard\Keyboard;
+use VkApi\Old\Message\Template\Template;
 
 class Message
 {

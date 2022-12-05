@@ -81,7 +81,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -327,7 +326,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -659,7 +657,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -686,15 +683,14 @@ paths:
         -
           in: query
           name: data
-          description: "Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below."
+          description: "STRING JSON! Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below."
           required: true
           schema:
-            type: string
+            type: array
             format: json
             items:
               $ref: '#/components/schemas/ads_user_specification_cutted'
             minItems: 1
-            maxItems: 10
       responses:
         200:
           description: 'null'
@@ -1531,7 +1527,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -2259,15 +2254,14 @@ paths:
         -
           in: query
           name: data
-          description: "Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below."
+          description: "STRING JSON! Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below."
           required: true
           schema:
-            type: string
+            type: array
             format: json
             items:
               $ref: '#/components/schemas/ads_user_specification'
             minItems: 1
-            maxItems: 10
       responses:
         200:
           description: 'null'
@@ -2440,7 +2434,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
       responses:
         200:
@@ -2488,7 +2481,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
       responses:
         200:
@@ -2543,7 +2535,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
       responses:
         200:
@@ -2976,14 +2967,12 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: return_friends
           description: 'null'
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: fields
@@ -3135,7 +3124,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: count
@@ -3151,7 +3139,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -3217,7 +3204,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -4399,7 +4385,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
       responses:
         200:
           description: 'null'
@@ -4764,7 +4749,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
             enum:
               - 0
@@ -4789,7 +4773,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: false
       responses:
         200:
           description: 'null'
@@ -4822,7 +4805,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
       responses:
         200:
           description: 'null'
@@ -4973,7 +4955,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
       responses:
         200:
           description: 'null'
@@ -5060,7 +5041,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -5135,7 +5115,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -5476,7 +5455,6 @@ paths:
           description: "'1' — to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'."
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: item_type
@@ -5519,9 +5497,9 @@ paths:
         -
           in: query
           name: fields
-          description: 'null'
+          description: 'STRING JSON! '
           schema:
-            type: string
+            type: array
             items:
               $ref: '#/components/schemas/users_fields'
         -
@@ -6665,7 +6643,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: suggested
@@ -6965,17 +6942,17 @@ paths:
         -
           in: query
           name: work_info_status
-          description: 'null'
+          description: 'Status of information about timetable'
           required: true
           schema:
             type: string
-            description: 'Status of information about timetable'
             enum:
+              - always_opened
+              - forever_closed
               - no_information
               - temporarily_closed
-              - always_opened
               - timetable
-              - forever_closed
+            default: no_information
         -
           in: query
           name: timetable
@@ -7939,17 +7916,16 @@ paths:
         -
           in: query
           name: work_info_status
-          description: 'null'
+          description: 'Status of information about timetable'
           required: true
           schema:
             type: string
-            description: 'Status of information about timetable'
             enum:
+              - always_opened
+              - forever_closed
               - no_information
               - temporarily_closed
-              - always_opened
               - timetable
-              - forever_closed
         -
           in: query
           name: timetable
@@ -8574,14 +8550,12 @@ paths:
           description: '1 - to return communities count and three communities for preview. By default: 0.'
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: subcategories
           description: '1 - to return subcategories info. By default: 0.'
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -10356,15 +10330,14 @@ paths:
         -
           in: query
           name: state
-          description: 'null'
+          description: 'Declares state if market is enabled in group.'
           required: true
           schema:
             type: string
-            description: 'Declares state if market is enabled in group.'
             enum:
-              - none
-              - basic
               - advanced
+              - basic
+              - none
         -
           in: query
           name: ref
@@ -10501,7 +10474,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: once_per_user
@@ -10509,7 +10481,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: pixel_code
@@ -10780,7 +10751,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: once_per_user
@@ -10788,7 +10758,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: pixel_code
@@ -11011,7 +10980,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             enum:
               - 0
               - 1
@@ -12011,7 +11979,6 @@ paths:
           schema:
             type: integer
             format: int32
-            default: 0
             minimum: 0
         -
           in: query
@@ -12269,7 +12236,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -12340,7 +12306,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -12462,7 +12427,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -12698,7 +12662,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
             enum:
               - 0
@@ -12888,7 +12851,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             enum:
               - 0
               - 1
@@ -12931,7 +12893,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: '0'
         -
           in: query
           name: status
@@ -12983,7 +12944,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
         -
           in: query
           name: count
@@ -13235,7 +13195,6 @@ paths:
           description: "'1' — delete message for for all."
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: peer_id
@@ -13434,7 +13393,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: disable_mentions
@@ -13442,7 +13400,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: message_id
@@ -13633,7 +13590,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -13765,7 +13721,6 @@ paths:
           description: 'Offset needed to return a specific subset of conversations.'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -14186,7 +14141,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -14254,7 +14208,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: group_id
@@ -14341,9 +14294,119 @@ paths:
           description: 'Additional profile [vk.com/dev/fields|fields] to return.'
           schema:
             type: array
-            default: 'photo,photo_medium_rec,sex,online,screen_name'
             items:
-              $ref: '#/components/schemas/users_fields'
+              type: string
+              enum:
+                - first_name_nom
+                - first_name_gen
+                - first_name_dat
+                - first_name_acc
+                - first_name_ins
+                - first_name_abl
+                - last_name_nom
+                - last_name_gen
+                - last_name_dat
+                - last_name_acc
+                - last_name_ins
+                - last_name_abl
+                - photo_id
+                - verified
+                - sex
+                - bdate
+                - bdate_visibility
+                - city
+                - country
+                - home_town
+                - has_photo
+                - photo
+                - photo_rec
+                - photo_50
+                - photo_100
+                - photo_200_orig
+                - photo_200
+                - photo_400
+                - photo_400_orig
+                - photo_big
+                - photo_medium
+                - photo_medium_rec
+                - photo_max
+                - photo_max_orig
+                - photo_max_size
+                - third_party_buttons
+                - online
+                - lists
+                - domain
+                - has_mobile
+                - contacts
+                - language
+                - site
+                - education
+                - universities
+                - schools
+                - status
+                - last_seen
+                - followers_count
+                - counters
+                - common_count
+                - online_info
+                - occupation
+                - nickname
+                - relatives
+                - relation
+                - personal
+                - connections
+                - exports
+                - wall_comments
+                - wall_default
+                - activities
+                - activity
+                - interests
+                - music
+                - movies
+                - tv
+                - books
+                - is_no_index
+                - games
+                - about
+                - quotes
+                - can_post
+                - can_see_all_posts
+                - can_see_audio
+                - can_see_gifts
+                - work
+                - places
+                - can_write_private_message
+                - can_send_friend_request
+                - can_upload_doc
+                - is_favorite
+                - is_hidden_from_feed
+                - timezone
+                - screen_name
+                - maiden_name
+                - crop_photo
+                - is_friend
+                - friend_status
+                - career
+                - military
+                - blacklisted
+                - blacklisted_by_me
+                - can_subscribe_posts
+                - descriptions
+                - trending
+                - mutual
+                - friendship_weeks
+                - can_invite_to_chats
+                - stories_archive_count
+                - has_unseen_stories
+                - video_live
+                - video_live_level
+                - video_live_count
+                - clips_count
+                - service_description
+                - can_see_wishes
+                - is_subscribed_podcasts
+                - can_subscribe_podcasts
+              default: 'photo,photo_medium_rec,sex,online,screen_name'
         -
           in: query
           name: events_limit
@@ -14388,7 +14451,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
             maximum: 2000
         -
@@ -14403,7 +14465,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: false
       responses:
         200:
           description: 'null'
@@ -14446,7 +14507,6 @@ paths:
           description: 'Long poll version'
           schema:
             type: integer
-            default: 0
             minimum: 0
       responses:
         200:
@@ -14571,7 +14631,6 @@ paths:
           description: 'IDs of messages to mark as important.'
           schema:
             type: array
-            default: {  }
             items:
               type: integer
               minimum: 0
@@ -14644,7 +14703,6 @@ paths:
           description: 'IDs of messages to mark as read.'
           schema:
             type: array
-            default: {  }
             items:
               type: integer
               format: int32
@@ -14847,7 +14905,6 @@ paths:
           description: 'Number of characters after which to truncate a previewed message. To preview the full message, specify ''0''. "NOTE: Messages are not truncated by default. Messages are truncated by words."'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -14855,7 +14912,6 @@ paths:
           description: 'Offset needed to return a specific subset of messages.'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -15065,7 +15121,7 @@ paths:
           name: forward
           description: 'JSON describing the forwarded message or reply'
           schema:
-            type: object
+            type: string
             properties:
               owner_id:
                 type: integer
@@ -15108,7 +15164,7 @@ paths:
           name: keyboard
           description: 'null'
           schema:
-            type: object
+            type: string
             properties:
               one_time:
                 type: boolean
@@ -15151,14 +15207,12 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: disable_mentions
           description: 'null'
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: intent
@@ -15672,7 +15726,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
             maximum: 10
         -
@@ -15720,7 +15773,6 @@ paths:
           description: 'Return additional list info'
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -15920,7 +15972,6 @@ paths:
           schema:
             type: integer
             format: int64
-            default: 0
         -
           in: query
           name: item_id
@@ -15928,7 +15979,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
       responses:
         200:
@@ -16193,9 +16243,9 @@ paths:
           required: true
           schema:
             type: array
-            default: all
             items:
               type: string
+              default: all
         -
           in: query
           name: privacy_comment
@@ -16203,9 +16253,9 @@ paths:
           required: true
           schema:
             type: array
-            default: all
             items:
               type: string
+              default: all
       responses:
         200:
           description: 'null'
@@ -16371,9 +16421,9 @@ paths:
           required: true
           schema:
             type: array
-            default: all
             items:
               type: string
+              default: all
         -
           in: query
           name: privacy_comment
@@ -16381,9 +16431,9 @@ paths:
           required: true
           schema:
             type: array
-            default: all
             items:
               type: string
+              default: all
       responses:
         200:
           description: 'null'
@@ -16464,7 +16514,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -16481,7 +16530,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
             enum:
               - 0
@@ -16526,7 +16574,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -16571,7 +16618,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
             enum:
               - 0
@@ -16583,7 +16629,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -16814,7 +16859,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -16895,7 +16939,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -17556,9 +17599,9 @@ paths:
           required: true
           schema:
             type: array
-            default: all
             items:
               type: string
+              default: all
         -
           in: query
           name: privacy_comment
@@ -17566,9 +17609,9 @@ paths:
           required: true
           schema:
             type: array
-            default: all
             items:
               type: string
+              default: all
         -
           in: query
           name: upload_by_admins_only
@@ -18609,7 +18652,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -18618,7 +18660,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -18876,7 +18917,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            maxItems: 100
           required: true
       responses:
         200:
@@ -19712,7 +19752,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -20465,7 +20504,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -21235,7 +21273,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -21388,7 +21425,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -21564,7 +21600,6 @@ paths:
           description: "'1' — to return additional fields for users and communities. Default value is 0."
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: fields
@@ -21640,7 +21675,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: fields
@@ -21788,7 +21822,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: fields
@@ -21970,7 +22003,6 @@ paths:
           required: true
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -21979,7 +22011,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: 0
         -
           in: query
           name: fields
@@ -22215,7 +22246,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: is_anonymous
@@ -22223,7 +22253,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: unseen_marker
@@ -22231,7 +22260,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
       responses:
         200:
           description: 'null'
@@ -22848,7 +22876,6 @@ paths:
           description: 'Offset needed to return a specific subset of links.'
           schema:
             type: integer
-            default: 0
             minimum: 0
       responses:
         200:
@@ -22922,7 +22949,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
       responses:
         200:
           description: 'null'
@@ -22972,7 +22998,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
       responses:
         200:
           description: 'null'
@@ -23655,7 +23680,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -23706,7 +23730,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: 0
           required: true
       responses:
         200:
@@ -24380,7 +24403,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: 0
       responses:
         200:
           description: 'null'
@@ -24957,9 +24979,8 @@ paths:
         -
           in: query
           name: filter
-          description: 'null'
+          description: "Filter to apply: 'owner' — posts by the wall owner, 'others' — posts by someone else, 'all' — posts by the wall owner and others (default), 'postponed' — timed posts (only available for calls with an 'access_token'), 'suggests' — suggested posts on a community wall"
           schema:
-            description: "Filter to apply: 'owner' — posts by the wall owner, 'others' — posts by someone else, 'all' — posts by the wall owner and others (default), 'postponed' — timed posts (only available for calls with an 'access_token'), 'suggests' — suggested posts on a community wall"
             type: string
             enum:
               - owner
@@ -25190,7 +25211,6 @@ paths:
           description: 'Count items in threads.'
           schema:
             type: integer
-            default: 0
             minimum: 0
             maximum: 10
       responses:
@@ -25412,7 +25432,6 @@ paths:
           description: 'null'
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: close_comments
@@ -25723,7 +25742,6 @@ paths:
           required: true
           schema:
             type: boolean
-            default: false
         -
           in: query
           name: mute_notifications
@@ -25858,7 +25876,6 @@ paths:
           description: 'Offset needed to return a specific subset of posts.'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -25964,7 +25981,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -26017,7 +26033,6 @@ paths:
           description: 'null'
           schema:
             type: integer
-            default: 0
             minimum: 0
         -
           in: query
@@ -26113,14 +26128,26 @@ components:
         wishlists_ae_promo_banner_show:
           $ref: '#/components/schemas/base_bool_int'
         2fa_required:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Two factor authentication is enabled'
         country:
           type: string
           description: 'Country code'
         https_required:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether HTTPS-only is enabled'
         intro:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether user has been processed intro'
         show_vk_apps_intro:
           type: boolean
         mini_apps_ads_slot_id:
@@ -26136,11 +26163,21 @@ components:
           type: integer
           description: 'Language ID'
         no_wall_replies:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether wall comments should be hidden'
         own_posts_default:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether only owners posts should be shown'
         subscriptions:
-          $ref: '#/components/schemas/account_subscriptions'
+          type: object
+          items:
+            type: integer
       additionalProperties: false
     account_name_request:
       type: object
@@ -26245,11 +26282,23 @@ components:
           type: integer
           description: 'Peer ID'
         sound:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the sound are enabled'
         disabled_mentions:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the mentions are disabled'
         disabled_mass_mentions:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: "Information whether the mass mentions (like '@all', '@online') are disabled. Can be affected by 'disabled_mentions'"
       additionalProperties: false
     account_push_params:
       type: object
@@ -26356,7 +26405,11 @@ components:
       type: object
       properties:
         disabled:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether notifications are disabled'
         disabled_until:
           type: integer
           description: 'Time until that notifications are disabled in Unixtime'
@@ -26507,7 +26560,11 @@ components:
           type: object
           properties:
             changed:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: '1 if changes has been processed'
             name_request:
               $ref: '#/components/schemas/account_name_request'
           additionalProperties: false
@@ -26560,7 +26617,11 @@ components:
           type: integer
           description: 'Account ID'
         account_status:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether account is active'
         account_type:
           $ref: '#/components/schemas/ads_account_type'
         account_name:
@@ -26617,11 +26678,23 @@ components:
           type: integer
           description: 'Max cost of target actions for autobidding, kopecks'
         disclaimer_medical:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether disclaimer is enabled'
         disclaimer_specialist:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether disclaimer is enabled'
         disclaimer_supplements:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether disclaimer is enabled'
         id:
           type: integer
           description: 'Ad ID'
@@ -26629,14 +26702,22 @@ components:
           type: integer
           description: 'Impressions limit'
         impressions_limited:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether impressions are limited'
         name:
           type: string
           description: 'Ad title'
         status:
           $ref: '#/components/schemas/ads_ad_status'
         video:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the ad is a video'
       additionalProperties: false
     ads_ad_approved:
       type: integer
@@ -26693,7 +26774,11 @@ components:
           type: string
           description: 'Ad title'
         video:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the ad is a video'
       additionalProperties: false
     ads_ad_status:
       type: integer
@@ -26874,7 +26959,11 @@ components:
           type: string
           description: Interests
         paying:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the user has proceeded VK payments before'
         positions:
           type: string
           description: 'Positions IDs'
@@ -26908,7 +26997,10 @@ components:
           type: string
           description: 'Streets IDs'
         travellers:
-          $ref: '#/components/schemas/base_property_exists'
+          type: integer
+          enum:
+            - 1
+          description: 'Travellers only'
         uni_from:
           type: integer
           description: 'University graduation year from'
@@ -27450,7 +27542,6 @@ components:
           $ref: '#/components/schemas/ads_access_role_public'
         grant_access_to_all_clients:
           type: boolean
-          default: false
         client_ids:
           type: array
           items:
@@ -28063,9 +28154,17 @@ components:
               format: uri
               description: 'URL of the app icon with 16 px in width'
             is_new:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Is new flag'
             push_enabled:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Is push enabled'
             screen_orientation:
               type: integer
               description: 'Screen orientation'
@@ -28457,7 +28556,11 @@ components:
       type: object
       properties:
         can_post:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can comment the post'
         can_open:
           $ref: '#/components/schemas/base_bool_int'
         can_close:
@@ -28605,15 +28708,27 @@ components:
           minimum: 0
           description: 'Likes number'
         user_likes:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user likes the photo'
       additionalProperties: false
     base_likes_info:
       type: object
       properties:
         can_like:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can like the post'
         can_publish:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can repost'
         count:
           type: integer
           minimum: 0
@@ -28665,7 +28780,218 @@ components:
           type: boolean
           description: 'Information whether the current link is external'
         video:
-          $ref: '#/components/schemas/video_video'
+          properties:
+            access_key:
+              type: string
+              description: 'Video access key'
+            adding_date:
+              type: integer
+              description: 'Date when the video has been added in Unixtime'
+              minimum: 0
+            can_comment:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can comment the video'
+            can_edit:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can edit the video'
+            can_like:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can like the video'
+            can_repost:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can repost the video'
+            can_subscribe:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can subscribe to author of the video'
+            can_add_to_faves:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can add the video to favourites'
+            can_add:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can add the video'
+            can_attach_link:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can attach action button to the video'
+            is_private:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: '1 if video is private'
+            comments:
+              type: integer
+              description: 'Number of comments'
+              minimum: 0
+            date:
+              type: integer
+              description: 'Date when video has been uploaded in Unixtime'
+              minimum: 0
+            description:
+              type: string
+              description: 'Video description'
+            duration:
+              type: integer
+              description: 'Video duration in seconds'
+              minimum: 0
+            image:
+              type: array
+              items:
+                $ref: '#/components/schemas/video_video_image'
+            first_frame:
+              type: array
+              items:
+                $ref: '#/components/schemas/video_video_image'
+            width:
+              type: integer
+              minimum: 0
+              description: 'Video width'
+            height:
+              type: integer
+              minimum: 0
+              description: 'Video height'
+            id:
+              type: integer
+              minimum: 0
+              description: 'Video ID'
+            owner_id:
+              type: integer
+              description: 'Video owner ID'
+              format: int64
+            user_id:
+              type: integer
+              minimum: 0
+              description: 'Id of the user who uploaded the video if it was uploaded to a group by member'
+              format: int64
+            title:
+              type: string
+              description: 'Video title'
+            is_favorite:
+              type: boolean
+              description: 'Whether video is added to bookmarks'
+            player:
+              type: string
+              format: uri
+              description: 'Video embed URL'
+            processing:
+              type: integer
+              enum:
+                - 1
+              description: 'Returns if the video is processing'
+            converting:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: '1 if  video is being converted'
+            added:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "1 if video is added to user's albums"
+            is_subscribed:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: '1 if user is subscribed to author of the video'
+            track_code:
+              type: string
+            repeat:
+              type: integer
+              enum:
+                - 1
+              description: 'Information whether the video is repeated'
+            type:
+              type: string
+              enum:
+                - video
+                - music_video
+                - movie
+            views:
+              type: integer
+              description: 'Number of views'
+              minimum: 0
+            local_views:
+              type: integer
+              description: 'If video is external, number of views on vk'
+              minimum: 0
+            content_restricted:
+              type: integer
+              minimum: 0
+              description: 'Restriction code'
+            content_restricted_message:
+              type: string
+              description: 'Restriction text'
+            balance:
+              type: integer
+              description: 'Live donations balance'
+              minimum: 0
+            live_status:
+              type: string
+              description: 'Live stream status'
+              enum:
+                - waiting
+                - started
+                - finished
+                - failed
+                - upcoming
+            live:
+              type: integer
+              enum:
+                - 1
+              description: '1 if the video is a live stream'
+            upcoming:
+              type: integer
+              enum:
+                - 1
+              description: '1 if the video is an upcoming stream'
+            live_start_time:
+              description: 'Date in Unixtime when the live stream is scheduled to start by the author'
+              type: integer
+              minimum: 0
+            live_notify:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)'
+            spectators:
+              type: integer
+              minimum: 0
+              description: 'Number of spectators of the stream'
+            platform:
+              type: string
+              description: 'External platform'
+            likes:
+              $ref: '#/components/schemas/base_likes'
+            reposts:
+              $ref: '#/components/schemas/base_reposts_info'
+          description: 'Video from link'
       additionalProperties: false
     base_link_application:
       type: object
@@ -28690,7 +29016,18 @@ components:
       type: object
       properties:
         action:
-          $ref: '#/components/schemas/base_link_button_action'
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/base_link_button_action_type'
+            url:
+              type: string
+              format: uri
+              description: 'Action URL'
+            consume_reason:
+              type: string
+          additionalProperties: false
+          description: 'Button action'
         title:
           type: string
           description: 'Button title'
@@ -28891,7 +29228,45 @@ components:
       type: object
       oneOf:
         -
-          $ref: '#/components/schemas/base_sticker_old'
+          type: object
+          properties:
+            id:
+              type: integer
+              description: 'Sticker ID'
+            product_id:
+              type: integer
+              description: 'Pack ID'
+            width:
+              type: integer
+              description: 'Width in px'
+            height:
+              type: integer
+              description: 'Height in px'
+            photo_128:
+              type: string
+              format: uri
+              description: 'URL of the preview image with 128 px in height'
+            photo_256:
+              type: string
+              format: uri
+              description: 'URL of the preview image with 256 px in height'
+            photo_352:
+              type: string
+              format: uri
+              description: 'URL of the preview image with 352 px in height'
+            photo_512:
+              type: string
+              format: uri
+              description: 'URL of the preview image with 512 px in height'
+            photo_64:
+              type: string
+              format: uri
+              description: 'URL of the preview image with 64 px in height'
+            is_allowed:
+              type: boolean
+              description: 'Information whether the sticker is allowed'
+          additionalProperties: false
+          description: 'Deprecated from 5.74, but still used in later versions in queue'
         -
           $ref: '#/components/schemas/base_sticker_new'
     base_sticker_animation:
@@ -29156,9 +29531,17 @@ components:
           type: integer
           description: 'Topic ID'
         is_closed:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the topic is closed'
         is_fixed:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the topic is fixed'
         title:
           type: string
           description: 'Topic title'
@@ -29200,7 +29583,11 @@ components:
           type: string
           description: 'Comment text'
         can_edit:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can edit the comment'
         likes:
           $ref: '#/components/schemas/base_likes_info'
       additionalProperties: false
@@ -29232,7 +29619,77 @@ components:
               items:
                 $ref: '#/components/schemas/board_topic_comment'
             poll:
-              $ref: '#/components/schemas/polls_poll'
+              type: object
+              properties:
+                anonymous:
+                  $ref: '#/components/schemas/polls_poll_anonymous'
+                friends:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/polls_friend'
+                multiple:
+                  description: 'Information whether the poll with multiple choices'
+                  type: boolean
+                answer_id:
+                  type: integer
+                  description: "Current user's answer ID"
+                  minimum: 0
+                end_date:
+                  type: integer
+                  minimum: 0
+                answer_ids:
+                  type: array
+                  description: "Current user's answer IDs"
+                  items:
+                    type: integer
+                    minimum: 0
+                closed:
+                  type: boolean
+                is_board:
+                  type: boolean
+                can_edit:
+                  type: boolean
+                can_vote:
+                  type: boolean
+                can_report:
+                  type: boolean
+                can_share:
+                  type: boolean
+                embed_hash:
+                  type: string
+                photo:
+                  $ref: '#/components/schemas/polls_background'
+                answers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/polls_answer'
+                created:
+                  type: integer
+                  description: 'Date when poll has been created in Unixtime'
+                  minimum: 0
+                id:
+                  type: integer
+                  description: 'Poll ID'
+                  minimum: 1
+                owner_id:
+                  type: integer
+                  description: "Poll owner's ID"
+                  format: int64
+                author_id:
+                  type: integer
+                  description: "Poll author's ID"
+                question:
+                  type: string
+                  description: 'Poll question'
+                background:
+                  $ref: '#/components/schemas/polls_background'
+                votes:
+                  type: integer
+                  description: 'Votes number'
+                  minimum: 0
+                disable_unvote:
+                  type: boolean
+              additionalProperties: false
             profiles:
               type: array
               items:
@@ -29260,7 +29717,77 @@ components:
               items:
                 $ref: '#/components/schemas/board_topic_comment'
             poll:
-              $ref: '#/components/schemas/polls_poll'
+              type: object
+              properties:
+                anonymous:
+                  $ref: '#/components/schemas/polls_poll_anonymous'
+                friends:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/polls_friend'
+                multiple:
+                  description: 'Information whether the poll with multiple choices'
+                  type: boolean
+                answer_id:
+                  type: integer
+                  description: "Current user's answer ID"
+                  minimum: 0
+                end_date:
+                  type: integer
+                  minimum: 0
+                answer_ids:
+                  type: array
+                  description: "Current user's answer IDs"
+                  items:
+                    type: integer
+                    minimum: 0
+                closed:
+                  type: boolean
+                is_board:
+                  type: boolean
+                can_edit:
+                  type: boolean
+                can_vote:
+                  type: boolean
+                can_report:
+                  type: boolean
+                can_share:
+                  type: boolean
+                embed_hash:
+                  type: string
+                photo:
+                  $ref: '#/components/schemas/polls_background'
+                answers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/polls_answer'
+                created:
+                  type: integer
+                  description: 'Date when poll has been created in Unixtime'
+                  minimum: 0
+                id:
+                  type: integer
+                  description: 'Poll ID'
+                  minimum: 1
+                owner_id:
+                  type: integer
+                  description: "Poll owner's ID"
+                  format: int64
+                author_id:
+                  type: integer
+                  description: "Poll author's ID"
+                question:
+                  type: string
+                  description: 'Poll question'
+                background:
+                  $ref: '#/components/schemas/polls_background'
+                votes:
+                  type: integer
+                  description: 'Votes number'
+                  minimum: 0
+                disable_unvote:
+                  type: boolean
+              additionalProperties: false
             real_offset:
               type: integer
               description: 'Offset of comment'
@@ -29282,7 +29809,11 @@ components:
             default_order:
               $ref: '#/components/schemas/board_default_order'
             can_add_topics:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can add topic'
             profiles:
               type: array
               items:
@@ -29309,14 +29840,62 @@ components:
             default_order:
               $ref: '#/components/schemas/board_default_order'
             can_add_topics:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can add topic'
           additionalProperties: false
       additionalProperties: false
     callback_base:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/callback_type'
+          type: string
+          enum:
+            - audio_new
+            - board_post_new
+            - board_post_edit
+            - board_post_restore
+            - board_post_delete
+            - confirmation
+            - group_leave
+            - group_join
+            - group_change_photo
+            - group_change_settings
+            - group_officers_edit
+            - lead_forms_new
+            - market_comment_new
+            - market_comment_delete
+            - market_comment_edit
+            - market_comment_restore
+            - message_new
+            - message_reply
+            - message_edit
+            - message_allow
+            - message_deny
+            - message_read
+            - message_typing_state
+            - messages_edit
+            - photo_new
+            - photo_comment_new
+            - photo_comment_delete
+            - photo_comment_edit
+            - photo_comment_restore
+            - poll_vote_new
+            - user_block
+            - user_unblock
+            - video_new
+            - video_comment_new
+            - video_comment_delete
+            - video_comment_edit
+            - video_comment_restore
+            - wall_post_new
+            - wall_reply_new
+            - wall_reply_edit
+            - wall_reply_delete
+            - wall_reply_restore
+            - wall_repost
         group_id:
           type: integer
           minimum: 0
@@ -29356,7 +29935,52 @@ components:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/callback_type'
+              type: string
+              enum:
+                - audio_new
+                - board_post_new
+                - board_post_edit
+                - board_post_restore
+                - board_post_delete
+                - confirmation
+                - group_leave
+                - group_join
+                - group_change_photo
+                - group_change_settings
+                - group_officers_edit
+                - lead_forms_new
+                - market_comment_new
+                - market_comment_delete
+                - market_comment_edit
+                - market_comment_restore
+                - message_new
+                - message_reply
+                - message_edit
+                - message_allow
+                - message_deny
+                - message_read
+                - message_typing_state
+                - messages_edit
+                - photo_new
+                - photo_comment_new
+                - photo_comment_delete
+                - photo_comment_edit
+                - photo_comment_restore
+                - poll_vote_new
+                - user_block
+                - user_unblock
+                - video_new
+                - video_comment_new
+                - video_comment_delete
+                - video_comment_edit
+                - video_comment_restore
+                - wall_post_new
+                - wall_reply_new
+                - wall_reply_edit
+                - wall_reply_delete
+                - wall_reply_restore
+                - wall_repost
+              default: confirmation
       additionalProperties: false
     callback_donut_money_withdraw:
       type: object
@@ -29615,7 +30239,52 @@ components:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/callback_type'
+              type: string
+              enum:
+                - audio_new
+                - board_post_new
+                - board_post_edit
+                - board_post_restore
+                - board_post_delete
+                - confirmation
+                - group_leave
+                - group_join
+                - group_change_photo
+                - group_change_settings
+                - group_officers_edit
+                - lead_forms_new
+                - market_comment_new
+                - market_comment_delete
+                - market_comment_edit
+                - market_comment_restore
+                - message_new
+                - message_reply
+                - message_edit
+                - message_allow
+                - message_deny
+                - message_read
+                - message_typing_state
+                - messages_edit
+                - photo_new
+                - photo_comment_new
+                - photo_comment_delete
+                - photo_comment_edit
+                - photo_comment_restore
+                - poll_vote_new
+                - user_block
+                - user_unblock
+                - video_new
+                - video_comment_new
+                - video_comment_delete
+                - video_comment_edit
+                - video_comment_restore
+                - wall_post_new
+                - wall_reply_new
+                - wall_reply_edit
+                - wall_reply_delete
+                - wall_reply_restore
+                - wall_repost
+              default: message_allow
             object:
               $ref: '#/components/schemas/callback_message_allow_object'
       additionalProperties: false
@@ -29646,7 +30315,52 @@ components:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/callback_type'
+              type: string
+              enum:
+                - audio_new
+                - board_post_new
+                - board_post_edit
+                - board_post_restore
+                - board_post_delete
+                - confirmation
+                - group_leave
+                - group_join
+                - group_change_photo
+                - group_change_settings
+                - group_officers_edit
+                - lead_forms_new
+                - market_comment_new
+                - market_comment_delete
+                - market_comment_edit
+                - market_comment_restore
+                - message_new
+                - message_reply
+                - message_edit
+                - message_allow
+                - message_deny
+                - message_read
+                - message_typing_state
+                - messages_edit
+                - photo_new
+                - photo_comment_new
+                - photo_comment_delete
+                - photo_comment_edit
+                - photo_comment_restore
+                - poll_vote_new
+                - user_block
+                - user_unblock
+                - video_new
+                - video_comment_new
+                - video_comment_delete
+                - video_comment_edit
+                - video_comment_restore
+                - wall_post_new
+                - wall_reply_new
+                - wall_reply_edit
+                - wall_reply_delete
+                - wall_reply_restore
+                - wall_repost
+              default: message_edit
             object:
               $ref: '#/components/schemas/messages_message'
       additionalProperties: false
@@ -29659,9 +30373,60 @@ components:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/callback_type'
+              type: string
+              enum:
+                - audio_new
+                - board_post_new
+                - board_post_edit
+                - board_post_restore
+                - board_post_delete
+                - confirmation
+                - group_leave
+                - group_join
+                - group_change_photo
+                - group_change_settings
+                - group_officers_edit
+                - lead_forms_new
+                - market_comment_new
+                - market_comment_delete
+                - market_comment_edit
+                - market_comment_restore
+                - message_new
+                - message_reply
+                - message_edit
+                - message_allow
+                - message_deny
+                - message_read
+                - message_typing_state
+                - messages_edit
+                - photo_new
+                - photo_comment_new
+                - photo_comment_delete
+                - photo_comment_edit
+                - photo_comment_restore
+                - poll_vote_new
+                - user_block
+                - user_unblock
+                - video_new
+                - video_comment_new
+                - video_comment_delete
+                - video_comment_edit
+                - video_comment_restore
+                - wall_post_new
+                - wall_reply_new
+                - wall_reply_edit
+                - wall_reply_delete
+                - wall_reply_restore
+                - wall_repost
+              default: message_new
             object:
-              $ref: '#/components/schemas/callback_message_object'
+              type: object
+              properties:
+                client_info:
+                  $ref: '#/components/schemas/client_info_for_bots'
+                message:
+                  $ref: '#/components/schemas/messages_message'
+              additionalProperties: false
       additionalProperties: false
     callback_message_object:
       type: object
@@ -29680,7 +30445,52 @@ components:
           type: object
           properties:
             type:
-              $ref: '#/components/schemas/callback_type'
+              type: string
+              enum:
+                - audio_new
+                - board_post_new
+                - board_post_edit
+                - board_post_restore
+                - board_post_delete
+                - confirmation
+                - group_leave
+                - group_join
+                - group_change_photo
+                - group_change_settings
+                - group_officers_edit
+                - lead_forms_new
+                - market_comment_new
+                - market_comment_delete
+                - market_comment_edit
+                - market_comment_restore
+                - message_new
+                - message_reply
+                - message_edit
+                - message_allow
+                - message_deny
+                - message_read
+                - message_typing_state
+                - messages_edit
+                - photo_new
+                - photo_comment_new
+                - photo_comment_delete
+                - photo_comment_edit
+                - photo_comment_restore
+                - poll_vote_new
+                - user_block
+                - user_unblock
+                - video_new
+                - video_comment_new
+                - video_comment_delete
+                - video_comment_edit
+                - video_comment_restore
+                - wall_post_new
+                - wall_reply_new
+                - wall_reply_edit
+                - wall_reply_delete
+                - wall_reply_restore
+                - wall_repost
+              default: message_reply
             object:
               $ref: '#/components/schemas/messages_message'
       additionalProperties: false
@@ -29982,7 +30792,11 @@ components:
               type: string
               description: 'Region title'
             important:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the city is included in important cities list'
           additionalProperties: false
       additionalProperties: false
     database_city_by_id:
@@ -30534,7 +31348,15 @@ components:
           type: boolean
           description: 'is favorite'
         member_status:
-          $ref: '#/components/schemas/groups_group_full_member_status'
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+          description: "Current user's member status"
         text:
           type: string
           description: 'text of attach'
@@ -30563,7 +31385,14 @@ components:
           items:
             $ref: '#/components/schemas/fave_tag'
         type:
-          $ref: '#/components/schemas/fave_bookmark_type'
+          type: string
+          enum:
+            - post
+            - video
+            - product
+            - article
+            - link
+          description: 'Item type'
         video:
           $ref: '#/components/schemas/video_video_full'
       additionalProperties: false
@@ -30588,7 +31417,12 @@ components:
           items:
             $ref: '#/components/schemas/fave_tag'
         type:
-          $ref: '#/components/schemas/fave_page_type'
+          type: string
+          enum:
+            - user
+            - group
+            - hints
+          description: 'Item type'
         updated_date:
           type: integer
           description: 'Timestamp, when this page was bookmarked'
@@ -31210,12 +32044,141 @@ components:
           type: integer
           description: 'Time offset int minutes from utc time'
         timetable:
-          $ref: '#/components/schemas/groups_address_timetable'
+          type: object
+          description: 'Week timetable for the address'
+          properties:
+            fri:
+              type: object
+              description: 'Timetable for friday'
+              properties:
+                break_close_time:
+                  type: integer
+                  description: 'Close time of the break in minutes'
+                break_open_time:
+                  type: integer
+                  description: 'Start time of the break in minutes'
+                close_time:
+                  type: integer
+                  description: 'Close time in minutes'
+                open_time:
+                  type: integer
+                  description: 'Open time in minutes'
+              additionalProperties: false
+            mon:
+              type: object
+              description: 'Timetable for monday'
+              properties:
+                break_close_time:
+                  type: integer
+                  description: 'Close time of the break in minutes'
+                break_open_time:
+                  type: integer
+                  description: 'Start time of the break in minutes'
+                close_time:
+                  type: integer
+                  description: 'Close time in minutes'
+                open_time:
+                  type: integer
+                  description: 'Open time in minutes'
+              additionalProperties: false
+            sat:
+              type: object
+              description: 'Timetable for saturday'
+              properties:
+                break_close_time:
+                  type: integer
+                  description: 'Close time of the break in minutes'
+                break_open_time:
+                  type: integer
+                  description: 'Start time of the break in minutes'
+                close_time:
+                  type: integer
+                  description: 'Close time in minutes'
+                open_time:
+                  type: integer
+                  description: 'Open time in minutes'
+              additionalProperties: false
+            sun:
+              type: object
+              description: 'Timetable for sunday'
+              properties:
+                break_close_time:
+                  type: integer
+                  description: 'Close time of the break in minutes'
+                break_open_time:
+                  type: integer
+                  description: 'Start time of the break in minutes'
+                close_time:
+                  type: integer
+                  description: 'Close time in minutes'
+                open_time:
+                  type: integer
+                  description: 'Open time in minutes'
+              additionalProperties: false
+            thu:
+              type: object
+              description: 'Timetable for thursday'
+              properties:
+                break_close_time:
+                  type: integer
+                  description: 'Close time of the break in minutes'
+                break_open_time:
+                  type: integer
+                  description: 'Start time of the break in minutes'
+                close_time:
+                  type: integer
+                  description: 'Close time in minutes'
+                open_time:
+                  type: integer
+                  description: 'Open time in minutes'
+              additionalProperties: false
+            tue:
+              type: object
+              description: 'Timetable for tuesday'
+              properties:
+                break_close_time:
+                  type: integer
+                  description: 'Close time of the break in minutes'
+                break_open_time:
+                  type: integer
+                  description: 'Start time of the break in minutes'
+                close_time:
+                  type: integer
+                  description: 'Close time in minutes'
+                open_time:
+                  type: integer
+                  description: 'Open time in minutes'
+              additionalProperties: false
+            wed:
+              type: object
+              description: 'Timetable for wednesday'
+              properties:
+                break_close_time:
+                  type: integer
+                  description: 'Close time of the break in minutes'
+                break_open_time:
+                  type: integer
+                  description: 'Start time of the break in minutes'
+                close_time:
+                  type: integer
+                  description: 'Close time in minutes'
+                open_time:
+                  type: integer
+                  description: 'Open time in minutes'
+              additionalProperties: false
+          additionalProperties: false
         title:
           type: string
           description: 'Title of the place (Zinger, etc)'
         work_info_status:
-          $ref: '#/components/schemas/groups_address_work_info_status'
+          type: string
+          description: 'Status of information about timetable'
+          enum:
+            - no_information
+            - temporarily_closed
+            - always_opened
+            - timetable
+            - forever_closed
         place_id:
           type: integer
       additionalProperties: false
@@ -31224,19 +32187,124 @@ components:
       description: 'Timetable for a week'
       properties:
         fri:
-          $ref: '#/components/schemas/groups_address_timetable_day'
+          type: object
+          description: 'Timetable for friday'
+          properties:
+            break_close_time:
+              type: integer
+              description: 'Close time of the break in minutes'
+            break_open_time:
+              type: integer
+              description: 'Start time of the break in minutes'
+            close_time:
+              type: integer
+              description: 'Close time in minutes'
+            open_time:
+              type: integer
+              description: 'Open time in minutes'
+          additionalProperties: false
         mon:
-          $ref: '#/components/schemas/groups_address_timetable_day'
+          type: object
+          description: 'Timetable for monday'
+          properties:
+            break_close_time:
+              type: integer
+              description: 'Close time of the break in minutes'
+            break_open_time:
+              type: integer
+              description: 'Start time of the break in minutes'
+            close_time:
+              type: integer
+              description: 'Close time in minutes'
+            open_time:
+              type: integer
+              description: 'Open time in minutes'
+          additionalProperties: false
         sat:
-          $ref: '#/components/schemas/groups_address_timetable_day'
+          type: object
+          description: 'Timetable for saturday'
+          properties:
+            break_close_time:
+              type: integer
+              description: 'Close time of the break in minutes'
+            break_open_time:
+              type: integer
+              description: 'Start time of the break in minutes'
+            close_time:
+              type: integer
+              description: 'Close time in minutes'
+            open_time:
+              type: integer
+              description: 'Open time in minutes'
+          additionalProperties: false
         sun:
-          $ref: '#/components/schemas/groups_address_timetable_day'
+          type: object
+          description: 'Timetable for sunday'
+          properties:
+            break_close_time:
+              type: integer
+              description: 'Close time of the break in minutes'
+            break_open_time:
+              type: integer
+              description: 'Start time of the break in minutes'
+            close_time:
+              type: integer
+              description: 'Close time in minutes'
+            open_time:
+              type: integer
+              description: 'Open time in minutes'
+          additionalProperties: false
         thu:
-          $ref: '#/components/schemas/groups_address_timetable_day'
+          type: object
+          description: 'Timetable for thursday'
+          properties:
+            break_close_time:
+              type: integer
+              description: 'Close time of the break in minutes'
+            break_open_time:
+              type: integer
+              description: 'Start time of the break in minutes'
+            close_time:
+              type: integer
+              description: 'Close time in minutes'
+            open_time:
+              type: integer
+              description: 'Open time in minutes'
+          additionalProperties: false
         tue:
-          $ref: '#/components/schemas/groups_address_timetable_day'
+          type: object
+          description: 'Timetable for tuesday'
+          properties:
+            break_close_time:
+              type: integer
+              description: 'Close time of the break in minutes'
+            break_open_time:
+              type: integer
+              description: 'Start time of the break in minutes'
+            close_time:
+              type: integer
+              description: 'Close time in minutes'
+            open_time:
+              type: integer
+              description: 'Open time in minutes'
+          additionalProperties: false
         wed:
-          $ref: '#/components/schemas/groups_address_timetable_day'
+          type: object
+          description: 'Timetable for wednesday'
+          properties:
+            break_close_time:
+              type: integer
+              description: 'Close time of the break in minutes'
+            break_open_time:
+              type: integer
+              description: 'Start time of the break in minutes'
+            close_time:
+              type: integer
+              description: 'Close time in minutes'
+            open_time:
+              type: integer
+              description: 'Open time in minutes'
+          additionalProperties: false
       additionalProperties: false
     groups_address_timetable_day:
       type: object
@@ -31413,7 +32481,11 @@ components:
       type: object
       properties:
         enabled:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether cover is enabled'
         images:
           type: array
           items:
@@ -31517,13 +32589,25 @@ components:
         type:
           $ref: '#/components/schemas/groups_group_type'
         is_admin:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user is administrator'
         admin_level:
           $ref: '#/components/schemas/groups_group_admin_level'
         is_member:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user is member'
         is_advertiser:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user is advertiser'
         start_date:
           description: 'Start date in Unixtime format'
           type: integer
@@ -31701,21 +32785,49 @@ components:
             market:
               $ref: '#/components/schemas/groups_market_info'
             member_status:
-              $ref: '#/components/schemas/groups_group_full_member_status'
+              type: integer
+              enum:
+                - 0
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+              description: "Current user's member status"
             is_adult:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether community is adult'
             is_hidden_from_feed:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether community is hidden from current user's newsfeed"
             is_favorite:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether community is in faves'
             is_subscribed:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user is subscribed'
             city:
               $ref: '#/components/schemas/base_object'
             country:
               $ref: '#/components/schemas/base_country'
             verified:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether community is verified'
             description:
               type: string
               description: 'Community description'
@@ -31750,19 +32862,43 @@ components:
             cover:
               $ref: '#/components/schemas/groups_cover'
             can_post:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether current user can post on community's wall"
             can_suggest:
               $ref: '#/components/schemas/base_bool_int'
             can_upload_story:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can upload story'
             can_upload_doc:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can upload doc'
             can_upload_video:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can upload video'
             can_see_all_posts:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether current user can see all posts on community's wall"
             can_create_topic:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can create topic'
             activity:
               type: string
               description: 'Type of group, start date of event or category of public page'
@@ -31770,9 +32906,22 @@ components:
               type: integer
               description: 'Fixed post ID'
             has_photo:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether community has photo'
             crop_photo:
-              $ref: '#/components/schemas/base_crop_photo'
+              type: object
+              properties:
+                photo:
+                  $ref: '#/components/schemas/photos_photo'
+                crop:
+                  $ref: '#/components/schemas/base_crop_photo_crop'
+                rect:
+                  $ref: '#/components/schemas/base_crop_photo_rect'
+              additionalProperties: false
+              description: 'Данные о точках, по которым вырезаны профильная и миниатюрная фотографии сообщества'
             status:
               type: string
               description: 'Community status'
@@ -31805,23 +32954,63 @@ components:
             secondary_section:
               $ref: '#/components/schemas/groups_group_full_section'
             trending:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the community has a "fire" pictogram.'
             can_message:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can send a message to community'
             is_messages_blocked:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether community can send a message to current user'
             can_send_notify:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether community can send notifications by phone number to current user'
             online_status:
-              $ref: '#/components/schemas/groups_online_status'
+              type: object
+              description: 'Status of replies in community messages'
+              properties:
+                minutes:
+                  type: integer
+                  description: 'Estimated time of answer (for status = answer_mark)'
+                status:
+                  $ref: '#/components/schemas/groups_online_status_type'
+              additionalProperties: false
             invited_by:
               type: integer
               description: 'Inviter ID'
               minimum: 1
             age_limits:
-              $ref: '#/components/schemas/groups_group_full_age_limits'
+              type: integer
+              enum:
+                - 1
+                - 2
+                - 3
+              description: 'Information whether age limit'
             ban_info:
-              $ref: '#/components/schemas/groups_group_ban_info'
+              type: object
+              properties:
+                comment:
+                  type: string
+                  description: 'Ban comment'
+                end_date:
+                  type: integer
+                  description: 'End date of ban in Unixtime'
+                reason:
+                  $ref: '#/components/schemas/groups_ban_info_reason'
+              additionalProperties: false
+              description: 'User ban info'
             has_market_app:
               type: boolean
               description: 'Information whether community has installed market app'
@@ -31830,7 +33019,16 @@ components:
             has_group_channel:
               type: boolean
             addresses:
-              $ref: '#/components/schemas/groups_addresses_info'
+              type: object
+              properties:
+                is_enabled:
+                  description: 'Information whether addresses is enabled'
+                  type: boolean
+                main_address_id:
+                  type: integer
+                  description: 'Main address id for group'
+              additionalProperties: false
+              description: 'Info about addresses in groups'
             is_subscribed_podcasts:
               description: 'Information whether current user is subscribed to podcasts'
               type: boolean
@@ -31841,7 +33039,20 @@ components:
               description: 'Can subscribe to wall'
               type: boolean
             live_covers:
-              $ref: '#/components/schemas/groups_live_covers'
+              type: object
+              properties:
+                is_enabled:
+                  description: 'Information whether live covers is enabled'
+                  type: boolean
+                is_scalable:
+                  description: 'Information whether live covers photo scaling is enabled'
+                  type: boolean
+                story_ids:
+                  type: array
+                  items:
+                    type: string
+              additionalProperties: false
+              description: 'Live covers state'
             stories_archive_count:
               type: integer
             has_unseen_stories:
@@ -32098,7 +33309,11 @@ components:
           type: string
           description: 'Link description'
         edit_title:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the link title can be edited'
         id:
           type: integer
           description: 'Link ID'
@@ -32115,7 +33330,11 @@ components:
           format: uri
           description: 'Link URL'
         image_processing:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the image on processing'
       additionalProperties: false
     groups_live_covers:
       type: object
@@ -32275,7 +33494,11 @@ components:
           type: string
           description: 'Currency name'
         enabled:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the market is enabled'
         main_album_id:
           type: integer
           description: 'Main market album ID'
@@ -32325,7 +33548,11 @@ components:
       type: object
       properties:
         member:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether user is a member of the group'
         user_id:
           type: integer
           description: 'User ID'
@@ -32336,15 +33563,35 @@ components:
       type: object
       properties:
         can_invite:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether user can be invited'
         can_recall:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: "Information whether user's invite to the group can be recalled"
         invitation:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether user has been invited to the group'
         member:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether user is a member of the group'
         request:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether user has send request to the group'
         user_id:
           type: integer
           description: 'User ID'
@@ -32374,9 +33621,157 @@ components:
         ban_info:
           $ref: '#/components/schemas/groups_ban_info'
         group:
-          $ref: '#/components/schemas/groups_group'
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              description: 'Community ID'
+            name:
+              type: string
+              description: 'Community name'
+            screen_name:
+              type: string
+              description: 'Domain of the community page'
+            is_closed:
+              $ref: '#/components/schemas/groups_group_is_closed'
+            type:
+              $ref: '#/components/schemas/groups_group_type'
+            is_admin:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user is administrator'
+            admin_level:
+              $ref: '#/components/schemas/groups_group_admin_level'
+            is_member:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user is member'
+            is_advertiser:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user is advertiser'
+            start_date:
+              description: 'Start date in Unixtime format'
+              type: integer
+            finish_date:
+              description: 'Finish date in Unixtime format'
+              type: integer
+            deactivated:
+              type: string
+              description: 'Information whether community is banned'
+            photo_50:
+              type: string
+              format: uri
+              description: 'URL of square photo of the community with 50 pixels in width'
+            photo_100:
+              type: string
+              format: uri
+              description: 'URL of square photo of the community with 100 pixels in width'
+            photo_200:
+              type: string
+              format: uri
+              description: 'URL of square photo of the community with 200 pixels in width'
+            photo_200_orig:
+              type: string
+              format: uri
+              description: 'URL of square photo of the community with 200 pixels in width original'
+            photo_400:
+              type: string
+              format: uri
+              description: 'URL of square photo of the community with 400 pixels in width'
+            photo_400_orig:
+              type: string
+              format: uri
+              description: 'URL of square photo of the community with 400 pixels in width original'
+            photo_max:
+              type: string
+              format: uri
+              description: 'URL of square photo of the community with max pixels in width'
+            photo_max_orig:
+              type: string
+              format: uri
+              description: 'URL of square photo of the community with max pixels in width original'
+            est_date:
+              type: string
+              description: 'Established date'
+            public_date_label:
+              type: string
+              description: 'Public date label'
+            photo_max_size:
+              $ref: '#/components/schemas/groups_photo_size'
+            is_video_live_notifications_blocked:
+              $ref: '#/components/schemas/base_bool_int'
+            video_live:
+              $ref: '#/components/schemas/video_live_info'
+          additionalProperties: false
+          description: 'Information about group if type = group'
         profile:
-          $ref: '#/components/schemas/users_user'
+          type: object
+          allOf:
+            -
+              $ref: '#/components/schemas/users_user_min'
+            -
+              properties:
+                sex:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                  description: 'User sex'
+                screen_name:
+                  type: string
+                  description: "Domain name of the user's page"
+                photo_50:
+                  type: string
+                  format: uri
+                  description: 'URL of square photo of the user with 50 pixels in width'
+                photo_100:
+                  type: string
+                  format: uri
+                  description: 'URL of square photo of the user with 100 pixels in width'
+                online_info:
+                  $ref: '#/components/schemas/users_online_info'
+                online:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether the user is online'
+                online_mobile:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether the user is online in mobile site or application'
+                online_app:
+                  type: integer
+                  description: 'Application ID'
+                verified:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether the user is verified'
+                trending:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether the user has a "fire" pictogram.'
+                friend_status:
+                  $ref: '#/components/schemas/friends_friend_status_status'
+                mutual:
+                  $ref: '#/components/schemas/friends_requests_mutual'
+          additionalProperties: false
+          description: 'Information about group if type = profile'
         type:
           $ref: '#/components/schemas/groups_owner_xtr_ban_info_type'
       additionalProperties: false
@@ -32486,7 +33881,184 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/groups_address'
+          type: object
+          properties:
+            additional_address:
+              type: string
+              description: 'Additional address to the place (6 floor, left door)'
+            address:
+              type: string
+              description: 'String address to the place (Nevsky, 28)'
+            city_id:
+              type: integer
+              description: 'City id of address'
+              minimum: 0
+            country_id:
+              type: integer
+              description: 'Country id of address'
+              minimum: 0
+            distance:
+              type: integer
+              description: 'Distance from the point'
+            id:
+              type: integer
+              description: 'Address id'
+            latitude:
+              type: number
+              description: 'Address latitude'
+            longitude:
+              type: number
+              description: 'Address longitude'
+            metro_station_id:
+              type: integer
+              description: 'Metro id of address'
+              minimum: 0
+            phone:
+              type: string
+              description: 'Address phone'
+            time_offset:
+              type: integer
+              description: 'Time offset int minutes from utc time'
+            timetable:
+              type: object
+              description: 'Week timetable for the address'
+              properties:
+                fri:
+                  type: object
+                  description: 'Timetable for friday'
+                  properties:
+                    break_close_time:
+                      type: integer
+                      description: 'Close time of the break in minutes'
+                    break_open_time:
+                      type: integer
+                      description: 'Start time of the break in minutes'
+                    close_time:
+                      type: integer
+                      description: 'Close time in minutes'
+                    open_time:
+                      type: integer
+                      description: 'Open time in minutes'
+                  additionalProperties: false
+                mon:
+                  type: object
+                  description: 'Timetable for monday'
+                  properties:
+                    break_close_time:
+                      type: integer
+                      description: 'Close time of the break in minutes'
+                    break_open_time:
+                      type: integer
+                      description: 'Start time of the break in minutes'
+                    close_time:
+                      type: integer
+                      description: 'Close time in minutes'
+                    open_time:
+                      type: integer
+                      description: 'Open time in minutes'
+                  additionalProperties: false
+                sat:
+                  type: object
+                  description: 'Timetable for saturday'
+                  properties:
+                    break_close_time:
+                      type: integer
+                      description: 'Close time of the break in minutes'
+                    break_open_time:
+                      type: integer
+                      description: 'Start time of the break in minutes'
+                    close_time:
+                      type: integer
+                      description: 'Close time in minutes'
+                    open_time:
+                      type: integer
+                      description: 'Open time in minutes'
+                  additionalProperties: false
+                sun:
+                  type: object
+                  description: 'Timetable for sunday'
+                  properties:
+                    break_close_time:
+                      type: integer
+                      description: 'Close time of the break in minutes'
+                    break_open_time:
+                      type: integer
+                      description: 'Start time of the break in minutes'
+                    close_time:
+                      type: integer
+                      description: 'Close time in minutes'
+                    open_time:
+                      type: integer
+                      description: 'Open time in minutes'
+                  additionalProperties: false
+                thu:
+                  type: object
+                  description: 'Timetable for thursday'
+                  properties:
+                    break_close_time:
+                      type: integer
+                      description: 'Close time of the break in minutes'
+                    break_open_time:
+                      type: integer
+                      description: 'Start time of the break in minutes'
+                    close_time:
+                      type: integer
+                      description: 'Close time in minutes'
+                    open_time:
+                      type: integer
+                      description: 'Open time in minutes'
+                  additionalProperties: false
+                tue:
+                  type: object
+                  description: 'Timetable for tuesday'
+                  properties:
+                    break_close_time:
+                      type: integer
+                      description: 'Close time of the break in minutes'
+                    break_open_time:
+                      type: integer
+                      description: 'Start time of the break in minutes'
+                    close_time:
+                      type: integer
+                      description: 'Close time in minutes'
+                    open_time:
+                      type: integer
+                      description: 'Open time in minutes'
+                  additionalProperties: false
+                wed:
+                  type: object
+                  description: 'Timetable for wednesday'
+                  properties:
+                    break_close_time:
+                      type: integer
+                      description: 'Close time of the break in minutes'
+                    break_open_time:
+                      type: integer
+                      description: 'Start time of the break in minutes'
+                    close_time:
+                      type: integer
+                      description: 'Close time in minutes'
+                    open_time:
+                      type: integer
+                      description: 'Open time in minutes'
+                  additionalProperties: false
+              additionalProperties: false
+            title:
+              type: string
+              description: 'Title of the place (Zinger, etc)'
+            work_info_status:
+              type: string
+              description: 'Status of information about timetable'
+              enum:
+                - no_information
+                - temporarily_closed
+                - always_opened
+                - timetable
+                - forever_closed
+            place_id:
+              type: integer
+          additionalProperties: false
+          description: Result
       additionalProperties: false
     groups_getAddresses_response:
       type: object
@@ -32567,7 +34139,11 @@ components:
           type: object
           properties:
             enabled:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether catalog is enabled for current user'
             categories:
               type: array
               items:
@@ -32581,7 +34157,11 @@ components:
           type: object
           properties:
             enabled:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether catalog is enabled for current user'
             categories:
               type: array
               items:
@@ -32765,12 +34345,24 @@ components:
           type: object
           properties:
             access:
-              $ref: '#/components/schemas/groups_group_access'
+              type: integer
+              minimum: 0
+              enum:
+                - 0
+                - 1
+                - 2
+              description: 'Community access settings'
             address:
               type: string
               description: "Community's page domain"
             audio:
-              $ref: '#/components/schemas/groups_group_audio'
+              type: integer
+              minimum: 0
+              enum:
+                - 0
+                - 1
+                - 2
+              description: 'Audio settings'
             articles:
               type: integer
               description: 'Articles settings'
@@ -32807,13 +34399,27 @@ components:
               type: string
               description: 'Community description'
             docs:
-              $ref: '#/components/schemas/groups_group_docs'
+              type: integer
+              minimum: 0
+              enum:
+                - 0
+                - 1
+                - 2
+              description: 'Docs settings'
             events:
               $ref: '#/components/schemas/base_bool_int'
             obscene_filter:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the obscene filter is enabled'
             obscene_stopwords:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the stop words filter is enabled'
             obscene_words:
               type: array
               description: 'The list of stop words'
@@ -32822,7 +34428,13 @@ components:
             event_group_id:
               type: integer
             photos:
-              $ref: '#/components/schemas/groups_group_photos'
+              type: integer
+              minimum: 0
+              enum:
+                - 0
+                - 1
+                - 2
+              description: 'Photos settings'
             public_category:
               type: integer
               description: 'Information about the group category'
@@ -32861,13 +34473,32 @@ components:
               type: string
               description: 'Community title'
             topics:
-              $ref: '#/components/schemas/groups_group_topics'
+              type: integer
+              minimum: 0
+              enum:
+                - 0
+                - 1
+                - 2
+              description: 'Topics settings'
             twitter:
               $ref: '#/components/schemas/groups_settings_twitter'
             video:
-              $ref: '#/components/schemas/groups_group_video'
+              type: integer
+              minimum: 0
+              enum:
+                - 0
+                - 1
+                - 2
+              description: 'Video settings'
             wall:
-              $ref: '#/components/schemas/groups_group_wall'
+              type: integer
+              minimum: 0
+              enum:
+                - 0
+                - 1
+                - 2
+                - 3
+              description: 'Wall settings'
             website:
               type: string
               description: 'Community website'
@@ -32878,7 +34509,13 @@ components:
               type: string
               description: 'Community email'
             wiki:
-              $ref: '#/components/schemas/groups_group_wiki'
+              type: integer
+              minimum: 0
+              enum:
+                - 0
+                - 1
+                - 2
+              description: 'Wiki settings'
           additionalProperties: false
       additionalProperties: false
     groups_getTagList_response:
@@ -32945,22 +34582,46 @@ components:
           type: object
           properties:
             member:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether user is a member of the group'
             invitation:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether user has been invited to the group'
             can_invite:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether user can be invited'
             can_recall:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether user's invite to the group can be recalled"
             request:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether user has sent request to the group'
           additionalProperties: false
       additionalProperties: false
     groups_isMember_response:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether user is a member of the group'
       additionalProperties: false
     groups_isMember_user_ids_extended_response:
       type: object
@@ -33241,9 +34902,17 @@ components:
           type: object
           properties:
             liked:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether user liked the object'
             copied:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether user reposted the object'
           additionalProperties: false
       additionalProperties: false
     link_target_object:
@@ -33422,9 +35091,17 @@ components:
               items:
                 $ref: '#/components/schemas/photos_photo'
             can_comment:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current use can comment the item'
             can_repost:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current use can repost the item'
             likes:
               $ref: '#/components/schemas/base_likes'
             reposts:
@@ -33436,7 +35113,262 @@ components:
               type: integer
               description: 'Object identifier in wishlist of viewer'
             cancel_info:
-              $ref: '#/components/schemas/base_link'
+              type: object
+              properties:
+                application:
+                  $ref: '#/components/schemas/base_link_application'
+                button:
+                  $ref: '#/components/schemas/base_link_button'
+                caption:
+                  type: string
+                  description: 'Link caption'
+                description:
+                  type: string
+                  description: 'Link description'
+                id:
+                  type: string
+                  description: 'Link ID'
+                is_favorite:
+                  type: boolean
+                photo:
+                  $ref: '#/components/schemas/photos_photo'
+                preview_page:
+                  type: string
+                  description: 'String ID of the page with article preview'
+                preview_url:
+                  type: string
+                  format: uri
+                  description: 'URL of the page with article preview'
+                product:
+                  $ref: '#/components/schemas/base_link_product'
+                rating:
+                  $ref: '#/components/schemas/base_link_rating'
+                title:
+                  type: string
+                  description: 'Link title'
+                url:
+                  type: string
+                  description: 'Link URL'
+                target_object:
+                  $ref: '#/components/schemas/link_target_object'
+                is_external:
+                  type: boolean
+                  description: 'Information whether the current link is external'
+                video:
+                  properties:
+                    access_key:
+                      type: string
+                      description: 'Video access key'
+                    adding_date:
+                      type: integer
+                      description: 'Date when the video has been added in Unixtime'
+                      minimum: 0
+                    can_comment:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Information whether current user can comment the video'
+                    can_edit:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Information whether current user can edit the video'
+                    can_like:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Information whether current user can like the video'
+                    can_repost:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Information whether current user can repost the video'
+                    can_subscribe:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Information whether current user can subscribe to author of the video'
+                    can_add_to_faves:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Information whether current user can add the video to favourites'
+                    can_add:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Information whether current user can add the video'
+                    can_attach_link:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Information whether current user can attach action button to the video'
+                    is_private:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: '1 if video is private'
+                    comments:
+                      type: integer
+                      description: 'Number of comments'
+                      minimum: 0
+                    date:
+                      type: integer
+                      description: 'Date when video has been uploaded in Unixtime'
+                      minimum: 0
+                    description:
+                      type: string
+                      description: 'Video description'
+                    duration:
+                      type: integer
+                      description: 'Video duration in seconds'
+                      minimum: 0
+                    image:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/video_video_image'
+                    first_frame:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/video_video_image'
+                    width:
+                      type: integer
+                      minimum: 0
+                      description: 'Video width'
+                    height:
+                      type: integer
+                      minimum: 0
+                      description: 'Video height'
+                    id:
+                      type: integer
+                      minimum: 0
+                      description: 'Video ID'
+                    owner_id:
+                      type: integer
+                      description: 'Video owner ID'
+                      format: int64
+                    user_id:
+                      type: integer
+                      minimum: 0
+                      description: 'Id of the user who uploaded the video if it was uploaded to a group by member'
+                      format: int64
+                    title:
+                      type: string
+                      description: 'Video title'
+                    is_favorite:
+                      type: boolean
+                      description: 'Whether video is added to bookmarks'
+                    player:
+                      type: string
+                      format: uri
+                      description: 'Video embed URL'
+                    processing:
+                      type: integer
+                      enum:
+                        - 1
+                      description: 'Returns if the video is processing'
+                    converting:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: '1 if  video is being converted'
+                    added:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: "1 if video is added to user's albums"
+                    is_subscribed:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: '1 if user is subscribed to author of the video'
+                    track_code:
+                      type: string
+                    repeat:
+                      type: integer
+                      enum:
+                        - 1
+                      description: 'Information whether the video is repeated'
+                    type:
+                      type: string
+                      enum:
+                        - video
+                        - music_video
+                        - movie
+                    views:
+                      type: integer
+                      description: 'Number of views'
+                      minimum: 0
+                    local_views:
+                      type: integer
+                      description: 'If video is external, number of views on vk'
+                      minimum: 0
+                    content_restricted:
+                      type: integer
+                      minimum: 0
+                      description: 'Restriction code'
+                    content_restricted_message:
+                      type: string
+                      description: 'Restriction text'
+                    balance:
+                      type: integer
+                      description: 'Live donations balance'
+                      minimum: 0
+                    live_status:
+                      type: string
+                      description: 'Live stream status'
+                      enum:
+                        - waiting
+                        - started
+                        - finished
+                        - failed
+                        - upcoming
+                    live:
+                      type: integer
+                      enum:
+                        - 1
+                      description: '1 if the video is a live stream'
+                    upcoming:
+                      type: integer
+                      enum:
+                        - 1
+                      description: '1 if the video is an upcoming stream'
+                    live_start_time:
+                      description: 'Date in Unixtime when the live stream is scheduled to start by the author'
+                      type: integer
+                      minimum: 0
+                    live_notify:
+                      type: integer
+                      enum:
+                        - 0
+                        - 1
+                      description: 'Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)'
+                    spectators:
+                      type: integer
+                      minimum: 0
+                      description: 'Number of spectators of the stream'
+                    platform:
+                      type: string
+                      description: 'External platform'
+                    likes:
+                      $ref: '#/components/schemas/base_likes'
+                    reposts:
+                      $ref: '#/components/schemas/base_reposts_info'
+                  description: 'Video from link'
+              additionalProperties: false
+              description: 'Information for cancel and revert order'
             user_agreement_info:
               description: 'User agreement info'
               type: string
@@ -33490,7 +35422,262 @@ components:
           items:
             $ref: '#/components/schemas/market_order_item'
         cancel_info:
-          $ref: '#/components/schemas/base_link'
+          type: object
+          properties:
+            application:
+              $ref: '#/components/schemas/base_link_application'
+            button:
+              $ref: '#/components/schemas/base_link_button'
+            caption:
+              type: string
+              description: 'Link caption'
+            description:
+              type: string
+              description: 'Link description'
+            id:
+              type: string
+              description: 'Link ID'
+            is_favorite:
+              type: boolean
+            photo:
+              $ref: '#/components/schemas/photos_photo'
+            preview_page:
+              type: string
+              description: 'String ID of the page with article preview'
+            preview_url:
+              type: string
+              format: uri
+              description: 'URL of the page with article preview'
+            product:
+              $ref: '#/components/schemas/base_link_product'
+            rating:
+              $ref: '#/components/schemas/base_link_rating'
+            title:
+              type: string
+              description: 'Link title'
+            url:
+              type: string
+              description: 'Link URL'
+            target_object:
+              $ref: '#/components/schemas/link_target_object'
+            is_external:
+              type: boolean
+              description: 'Information whether the current link is external'
+            video:
+              properties:
+                access_key:
+                  type: string
+                  description: 'Video access key'
+                adding_date:
+                  type: integer
+                  description: 'Date when the video has been added in Unixtime'
+                  minimum: 0
+                can_comment:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether current user can comment the video'
+                can_edit:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether current user can edit the video'
+                can_like:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether current user can like the video'
+                can_repost:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether current user can repost the video'
+                can_subscribe:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether current user can subscribe to author of the video'
+                can_add_to_faves:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether current user can add the video to favourites'
+                can_add:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether current user can add the video'
+                can_attach_link:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Information whether current user can attach action button to the video'
+                is_private:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: '1 if video is private'
+                comments:
+                  type: integer
+                  description: 'Number of comments'
+                  minimum: 0
+                date:
+                  type: integer
+                  description: 'Date when video has been uploaded in Unixtime'
+                  minimum: 0
+                description:
+                  type: string
+                  description: 'Video description'
+                duration:
+                  type: integer
+                  description: 'Video duration in seconds'
+                  minimum: 0
+                image:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/video_video_image'
+                first_frame:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/video_video_image'
+                width:
+                  type: integer
+                  minimum: 0
+                  description: 'Video width'
+                height:
+                  type: integer
+                  minimum: 0
+                  description: 'Video height'
+                id:
+                  type: integer
+                  minimum: 0
+                  description: 'Video ID'
+                owner_id:
+                  type: integer
+                  description: 'Video owner ID'
+                  format: int64
+                user_id:
+                  type: integer
+                  minimum: 0
+                  description: 'Id of the user who uploaded the video if it was uploaded to a group by member'
+                  format: int64
+                title:
+                  type: string
+                  description: 'Video title'
+                is_favorite:
+                  type: boolean
+                  description: 'Whether video is added to bookmarks'
+                player:
+                  type: string
+                  format: uri
+                  description: 'Video embed URL'
+                processing:
+                  type: integer
+                  enum:
+                    - 1
+                  description: 'Returns if the video is processing'
+                converting:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: '1 if  video is being converted'
+                added:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: "1 if video is added to user's albums"
+                is_subscribed:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: '1 if user is subscribed to author of the video'
+                track_code:
+                  type: string
+                repeat:
+                  type: integer
+                  enum:
+                    - 1
+                  description: 'Information whether the video is repeated'
+                type:
+                  type: string
+                  enum:
+                    - video
+                    - music_video
+                    - movie
+                views:
+                  type: integer
+                  description: 'Number of views'
+                  minimum: 0
+                local_views:
+                  type: integer
+                  description: 'If video is external, number of views on vk'
+                  minimum: 0
+                content_restricted:
+                  type: integer
+                  minimum: 0
+                  description: 'Restriction code'
+                content_restricted_message:
+                  type: string
+                  description: 'Restriction text'
+                balance:
+                  type: integer
+                  description: 'Live donations balance'
+                  minimum: 0
+                live_status:
+                  type: string
+                  description: 'Live stream status'
+                  enum:
+                    - waiting
+                    - started
+                    - finished
+                    - failed
+                    - upcoming
+                live:
+                  type: integer
+                  enum:
+                    - 1
+                  description: '1 if the video is a live stream'
+                upcoming:
+                  type: integer
+                  enum:
+                    - 1
+                  description: '1 if the video is an upcoming stream'
+                live_start_time:
+                  description: 'Date in Unixtime when the live stream is scheduled to start by the author'
+                  type: integer
+                  minimum: 0
+                live_notify:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)'
+                spectators:
+                  type: integer
+                  minimum: 0
+                  description: 'Number of spectators of the stream'
+                platform:
+                  type: string
+                  description: 'External platform'
+                likes:
+                  $ref: '#/components/schemas/base_likes'
+                reposts:
+                  $ref: '#/components/schemas/base_reposts_info'
+              description: 'Video from link'
+          additionalProperties: false
+          description: 'Information for cancel and revert order'
       additionalProperties: false
     market_order_item:
       type: object
@@ -33588,7 +35775,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Returns 1 if request has been processed successfully (0 if the comment is not found)'
       additionalProperties: false
     market_getAlbumById_response:
       type: object
@@ -33811,7 +36002,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Returns 1 if request has been processed successfully (0 if the comment is not found)'
       additionalProperties: false
     market_search_extended_response:
       type: object
@@ -33907,9 +36102,17 @@ components:
           type: integer
           description: 'Chat ID'
         kicked:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Shows that user has been kicked from the chat'
         left:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Shows that user has been left the chat'
         photo_100:
           type: string
           format: uri
@@ -33957,9 +36160,17 @@ components:
           type: integer
           description: 'Chat ID'
         kicked:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Shows that user has been kicked from the chat'
         left:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Shows that user has been left the chat'
         photo_100:
           type: string
           format: uri
@@ -34024,7 +36235,11 @@ components:
           type: integer
           description: 'Time until that notifications are disabled'
         sound:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the sound is on'
       additionalProperties: false
     messages_chat_restrictions:
       type: object
@@ -34703,7 +36918,11 @@ components:
       type: object
       properties:
         online:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether user is online'
         time:
           type: integer
           description: 'Time when user was online in Unixtime'
@@ -34756,7 +36975,11 @@ components:
           type: integer
           description: 'Date when the message has been sent in Unixtime'
         deleted:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Is it an deleted message'
         from_id:
           type: integer
           format: int64
@@ -34785,7 +37008,11 @@ components:
           type: integer
           description: 'Members number'
         out:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the message is outcoming'
         payload:
           type: string
         peer_id:
@@ -35103,7 +37330,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: Result
       additionalProperties: false
     messages_getByConversationMessageId_extended_response:
       type: object
@@ -35996,7 +38227,11 @@ components:
         -
           properties:
             no_reposts:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether reposts hiding is enabled'
             source_ids:
               type: array
               items:
@@ -36054,7 +38289,11 @@ components:
             comments:
               $ref: '#/components/schemas/base_object_count'
             can_repost:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can repost the photo'
       additionalProperties: false
     newsfeed_generic_response:
       type: object
@@ -36281,7 +38520,11 @@ components:
           type: integer
           minimum: 0
         can_comment:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can comment the note'
         comments:
           type: integer
           description: 'Comments number'
@@ -36566,7 +38809,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: Result
       additionalProperties: false
     notifications_sendMessage_response:
       type: object
@@ -36716,7 +38963,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: Result
       additionalProperties: false
     orders_changeState_response:
       type: object
@@ -36774,7 +39025,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: Result
       additionalProperties: false
     owner_state:
       type: object
@@ -36828,9 +39083,19 @@ components:
           type: integer
           description: 'Views number'
         who_can_edit:
-          $ref: '#/components/schemas/pages_privacy_settings'
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          description: 'Edit settings of the page'
         who_can_view:
-          $ref: '#/components/schemas/pages_privacy_settings'
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          description: 'View settings of the page'
       additionalProperties: false
     pages_wikipage_full:
       type: object
@@ -36842,9 +39107,17 @@ components:
           type: integer
           description: 'Page creator ID'
         current_user_can_edit:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can edit the page'
         current_user_can_edit_access:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can edit the page access settings'
         edited:
           type: integer
           description: 'Date when the page has been edited in Unixtime'
@@ -36877,9 +39150,19 @@ components:
           type: integer
           description: 'Views number'
         who_can_edit:
-          $ref: '#/components/schemas/pages_privacy_settings'
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          description: 'Edit settings of the page'
         who_can_view:
-          $ref: '#/components/schemas/pages_privacy_settings'
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          description: 'View settings of the page'
         url:
           type: string
           format: uri
@@ -37037,7 +39320,11 @@ components:
           format: uri
           description: 'URL of image with 2560 px width'
         can_comment:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can comment the photo'
         place:
           type: string
         post_id:
@@ -37107,9 +39394,17 @@ components:
       type: object
       properties:
         can_upload:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can upload photo to the album'
         comments_disabled:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether album comments are disabled'
         created:
           type: integer
           description: 'Date when the album has been created in Unixtime'
@@ -37140,7 +39435,11 @@ components:
           description: 'Thumb photo ID'
           minimum: 0
         thumb_is_last:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the album thumb is last photo'
         thumb_src:
           type: string
           format: uri
@@ -37153,7 +39452,11 @@ components:
           description: 'Date when the album has been updated last time in Unixtime'
           minimum: 0
         upload_by_admins_only:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether only community administrators can upload photos'
       additionalProperties: false
     photos_photo_falseable:
       type: object
@@ -37184,7 +39487,10 @@ components:
           description: 'Original photo height'
           minimum: 0
         hidden:
-          $ref: '#/components/schemas/base_property_exists'
+          type: integer
+          enum:
+            - 1
+          description: 'Returns if the photo is hidden above the wall'
         id:
           type: integer
           description: 'Photo ID'
@@ -37328,7 +39634,11 @@ components:
           description: 'Tagged user ID'
           format: int64
         viewed:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the tag is reviewed'
         x:
           type: number
           description: 'Coordinate X of the left upper corner'
@@ -37383,7 +39693,10 @@ components:
           description: 'Original photo height'
           minimum: 0
         hidden:
-          $ref: '#/components/schemas/base_property_exists'
+          type: integer
+          enum:
+            - 1
+          description: 'Returns if the photo is hidden above the wall'
         id:
           type: integer
           description: 'Photo ID'
@@ -37596,7 +39909,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Returns 1 if request has been processed successfully, 0 if the comment is not found'
       additionalProperties: false
     photos_getAlbumsCount_response:
       type: object
@@ -37650,7 +39967,11 @@ components:
               items:
                 $ref: '#/components/schemas/photos_photo_full_xtr_real_offset'
             more:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether next page is presented'
           additionalProperties: false
       additionalProperties: false
     photos_getAll_response:
@@ -37667,7 +39988,11 @@ components:
               items:
                 $ref: '#/components/schemas/photos_photo_xtr_real_offset'
             more:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether next page is presented'
           additionalProperties: false
       additionalProperties: false
     photos_getById_response:
@@ -37930,7 +40255,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Returns 1 if request has been processed successfully, 0 if the comment is not found'
       additionalProperties: false
     photos_saveMarketAlbumPhoto_response:
       type: object
@@ -38066,7 +40395,14 @@ components:
           type: string
           description: 'Name of the podcasts owner community'
         cover:
-          $ref: '#/components/schemas/podcast_cover'
+          type: object
+          properties:
+            sizes:
+              type: array
+              items:
+                $ref: '#/components/schemas/photos_photo_sizes'
+          additionalProperties: false
+          description: 'Podcast cover'
       additionalProperties: false
     podcasts_searchPodcast_response:
       type: object
@@ -38249,7 +40585,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: Result
       additionalProperties: false
     polls_create_response:
       type: object
@@ -38261,7 +40601,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: Result
       additionalProperties: false
     polls_getBackgrounds_response:
       type: object
@@ -38298,7 +40642,47 @@ components:
           description: 'Button key'
           oneOf:
             -
-              $ref: '#/components/schemas/base_link_button'
+              type: object
+              properties:
+                action:
+                  type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/base_link_button_action_type'
+                    url:
+                      type: string
+                      format: uri
+                      description: 'Action URL'
+                    consume_reason:
+                      type: string
+                  additionalProperties: false
+                  description: 'Button action'
+                title:
+                  type: string
+                  description: 'Button title'
+                block_id:
+                  type: string
+                  description: 'Target block id'
+                section_id:
+                  type: string
+                  description: 'Target section id'
+                curator_id:
+                  type: integer
+                  description: 'curator id'
+                album_id:
+                  type: integer
+                  minimum: 1
+                  description: 'Video album id'
+                owner_id:
+                  type: integer
+                  description: 'Owner id'
+                  format: int64
+                icon:
+                  type: string
+                  description: "Button icon name, e.g. 'phone' or 'gift'"
+                style:
+                  $ref: '#/components/schemas/base_link_button_style'
+              additionalProperties: false
             -
               type: string
         button_text:
@@ -38911,11 +41295,23 @@ components:
           type: boolean
           description: "Information whether sticker product wasn't used after being purchased"
         purchased:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the product is purchased (1 - yes, 0 - no)'
         active:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the product is active (1 - yes, 0 - no)'
         promoted:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether the product is promoted (1 - yes, 0 - no)'
         purchase_date:
           type: integer
           minimum: 0
@@ -38931,7 +41327,10 @@ components:
             type: integer
           description: 'Array of style sticker ids (for sticker pack styles)'
         icon:
-          $ref: '#/components/schemas/store_product_icon'
+          type: array
+          items:
+            $ref: '#/components/schemas/base_image'
+          description: 'Array of icon images or icon set object of the product (for stickers product type)'
         previews:
           type: array
           items:
@@ -38950,7 +41349,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/base_image'
-      description: 'deprecated_from_version 5.134'
     store_stickers_keyword:
       type: object
       properties:
@@ -39171,9 +41569,68 @@ components:
             $ref: '#/components/schemas/stories_feed_item'
           description: 'Grouped stories of various authors (for types community_grouped_stories/app_grouped_stories type)'
         app:
-          $ref: '#/components/schemas/apps_app_min'
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/apps_app_type'
+            id:
+              type: integer
+              description: 'Application ID'
+              minimum: 0
+            title:
+              type: string
+              description: 'Application title'
+            author_owner_id:
+              type: integer
+              description: "Application author's ID"
+            is_installed:
+              type: boolean
+              description: 'Is application installed'
+            icon_139:
+              type: string
+              format: uri
+              description: 'URL of the app icon with 139 px in width'
+            icon_150:
+              type: string
+              format: uri
+              description: 'URL of the app icon with 150 px in width'
+            icon_278:
+              type: string
+              format: uri
+              description: 'URL of the app icon with 278 px in width'
+            icon_576:
+              type: string
+              format: uri
+              description: 'URL of the app icon with 576 px in width'
+            background_loader_color:
+              type: string
+              description: 'Hex color code without hash sign'
+            loader_icon:
+              type: string
+              description: 'SVG data'
+            icon_75:
+              type: string
+              format: uri
+              description: 'URL of the app icon with 75 px in width'
+          additionalProperties: false
+          description: 'App, which stories has been grouped (for type app_grouped_stories)'
         promo_data:
-          $ref: '#/components/schemas/stories_promo_block'
+          type: object
+          description: 'Additional data for promo stories (for type promo_stories)'
+          properties:
+            name:
+              type: string
+              description: 'Promo story title'
+            photo_50:
+              type: string
+              description: 'RL of square photo of the story with 50 pixels in width'
+            photo_100:
+              type: string
+              description: 'RL of square photo of the story with 100 pixels in width'
+            not_animated:
+              type: boolean
+              description: 'Hide animation for promo story'
+          additionalProperties: false
         birthday_user_id:
           type: integer
         track_code:
@@ -39229,18 +41686,38 @@ components:
           type: string
           description: 'Access key for private object.'
         can_comment:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can comment the story (0 - no, 1 - yes).'
         can_reply:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can reply to the story (0 - no, 1 - yes).'
         can_see:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can see the story (0 - no, 1 - yes).'
         can_like:
           type: boolean
           description: 'Information whether current user can like the story.'
         can_share:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can share the story (0 - no, 1 - yes).'
         can_hide:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can hide the story (0 - no, 1 - yes).'
         date:
           type: integer
           minimum: 0
@@ -39278,9 +41755,23 @@ components:
         photo:
           $ref: '#/components/schemas/photos_photo'
         replies:
-          $ref: '#/components/schemas/stories_replies'
+          type: object
+          properties:
+            count:
+              type: integer
+              description: 'Replies number.'
+              minimum: 0
+            new:
+              type: integer
+              description: 'New replies number.'
+          additionalProperties: false
+          description: 'Replies counters to current story.'
         seen:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user has seen the story or not (0 - no, 1 - yes).'
         type:
           $ref: '#/components/schemas/stories_story_type'
         clickable_stickers:
@@ -39292,9 +41783,17 @@ components:
           minimum: 0
           description: 'Views number.'
         can_ask:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether story has question sticker and current user can send question to the author'
         can_ask_anonymous:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether story has question sticker and current user can send anonymous question to the author'
         narratives_count:
           type: integer
         first_narrative_title:
@@ -40015,7 +42514,12 @@ components:
         -
           properties:
             sex:
-              $ref: '#/components/schemas/base_sex'
+              type: integer
+              enum:
+                - 0
+                - 1
+                - 2
+              description: 'User sex'
             screen_name:
               type: string
               description: "Domain name of the user's page"
@@ -40030,16 +42534,32 @@ components:
             online_info:
               $ref: '#/components/schemas/users_online_info'
             online:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the user is online'
             online_mobile:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the user is online in mobile site or application'
             online_app:
               type: integer
               description: 'Application ID'
             verified:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the user is verified'
             trending:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the user has a "fire" pictogram.'
             friend_status:
               $ref: '#/components/schemas/friends_friend_status_status'
             mutual:
@@ -40225,19 +42745,47 @@ components:
               type: string
               description: "ID of the user's main photo"
             has_photo:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the user has main photo'
             has_mobile:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the user specified his phone number'
             is_friend:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the user is a friend of current user'
             wall_comments:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can comment wall posts'
             can_post:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether current user can post on the user's wall"
             can_see_all_posts:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether current user can see other users' audio on the wall"
             can_see_audio:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether current user can see the user's audio"
             type:
               $ref: '#/components/schemas/users_user_type'
             email:
@@ -40299,7 +42847,11 @@ components:
               description: "Information whether current user can see the user's wishes"
               type: boolean
             can_see_gifts:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether current user can see the user's gifts"
             interests:
               type: string
             books:
@@ -40319,9 +42871,17 @@ components:
             music:
               type: string
             can_write_private_message:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can write private message'
             can_send_friend_request:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can send a friend request'
             can_be_invited_group:
               type: boolean
               description: 'Information whether current user can be invited to the community'
@@ -40365,13 +42925,29 @@ components:
               description: "Number of user's clips"
               minimum: 0
             blacklisted:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether current user is in the requested user's blacklist."
             blacklisted_by_me:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether the requested user is in current user's blacklist"
             is_favorite:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the requested user is in faves of current user'
             is_hidden_from_feed:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: "Information whether the requested user is hidden from current user's newsfeed"
             common_count:
               type: integer
               description: 'Number of common friends with current user'
@@ -40413,7 +42989,18 @@ components:
               type: string
               description: 'User hometown'
             relation:
-              $ref: '#/components/schemas/users_user_relation'
+              type: integer
+              enum:
+                - 0
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+                - 6
+                - 7
+                - 8
+              description: 'User relationship status'
             relation_partner:
               $ref: '#/components/schemas/users_user_min'
             personal:
@@ -40536,11 +43123,26 @@ components:
           type: string
           description: 'User phone number with some hidden digits'
         relation:
-          $ref: '#/components/schemas/users_user_relation'
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            - 8
+          description: 'User relationship status'
         relation_partner:
           $ref: '#/components/schemas/users_user_min'
         relation_pending:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether relation status is pending'
         relation_requests:
           type: array
           items:
@@ -40549,7 +43151,12 @@ components:
           type: string
           description: "Domain name of the user's page"
         sex:
-          $ref: '#/components/schemas/base_sex'
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          description: 'User sex'
         status:
           type: string
           description: 'User status'
@@ -40912,9 +43519,17 @@ components:
       type: object
       properties:
         can_rewind:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'If user car rewind live or not'
         is_endless:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'If live is endless or not'
         max_duration:
           description: 'Max possible time for rewind'
           type: integer
@@ -40953,23 +43568,59 @@ components:
           description: 'Date when the video has been added in Unixtime'
           minimum: 0
         can_comment:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can comment the video'
         can_edit:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can edit the video'
         can_like:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can like the video'
         can_repost:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can repost the video'
         can_subscribe:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can subscribe to author of the video'
         can_add_to_faves:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can add the video to favourites'
         can_add:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can add the video'
         can_attach_link:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can attach action button to the video'
         is_private:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: '1 if video is private'
         comments:
           type: integer
           description: 'Number of comments'
@@ -41025,17 +43676,35 @@ components:
           format: uri
           description: 'Video embed URL'
         processing:
-          $ref: '#/components/schemas/base_property_exists'
+          type: integer
+          enum:
+            - 1
+          description: 'Returns if the video is processing'
         converting:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: '1 if  video is being converted'
         added:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: "1 if video is added to user's albums"
         is_subscribed:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: '1 if user is subscribed to author of the video'
         track_code:
           type: string
         repeat:
-          $ref: '#/components/schemas/base_property_exists'
+          type: integer
+          enum:
+            - 1
+          description: 'Information whether the video is repeated'
         type:
           type: string
           enum:
@@ -41071,15 +43740,25 @@ components:
             - failed
             - upcoming
         live:
-          $ref: '#/components/schemas/base_property_exists'
+          type: integer
+          enum:
+            - 1
+          description: '1 if the video is a live stream'
         upcoming:
-          $ref: '#/components/schemas/base_property_exists'
+          type: integer
+          enum:
+            - 1
+          description: '1 if the video is an upcoming stream'
         live_start_time:
           description: 'Date in Unixtime when the live stream is scheduled to start by the author'
           type: integer
           minimum: 0
         live_notify:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)'
         spectators:
           type: integer
           minimum: 0
@@ -41123,9 +43802,15 @@ components:
                 $ref: '#/components/schemas/video_video_image'
               description: 'Album cover image in different sizes'
             image_blur:
-              $ref: '#/components/schemas/base_property_exists'
+              type: integer
+              enum:
+                - 1
+              description: 'Need blur album thumb or not'
             is_system:
-              $ref: '#/components/schemas/base_property_exists'
+              type: integer
+              enum:
+                - 1
+              description: 'Information whether album is system'
             updated_time:
               type: integer
               description: 'Date when the album has been updated last time in Unixtime'
@@ -41189,7 +43874,25 @@ components:
             trailer:
               $ref: '#/components/schemas/video_video_files'
             live_settings:
-              $ref: '#/components/schemas/video_live_settings'
+              description: 'Settings for live stream'
+              type: object
+              properties:
+                can_rewind:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'If user car rewind live or not'
+                is_endless:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                  description: 'If live is endless or not'
+                max_duration:
+                  description: 'Max possible time for rewind'
+                  type: integer
+              additionalProperties: false
       additionalProperties: false
     video_video_image:
       type: object
@@ -41378,7 +44081,11 @@ components:
       type: object
       properties:
         response:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Returns 1 if request has been processed successfully, 0 if the comment is not found'
       additionalProperties: false
     video_save_response:
       type: object
@@ -41783,7 +44490,19 @@ components:
           items:
             $ref: '#/components/schemas/wall_wallpost_attachment'
         copyright:
-          $ref: '#/components/schemas/wall_post_copyright'
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            link:
+              type: string
+            name:
+              type: string
+            type:
+              type: string
+          additionalProperties: false
+          description: 'Information about the source of the post'
         date:
           type: integer
           description: 'Date of publishing in Unixtime'
@@ -41807,7 +44526,29 @@ components:
           type: boolean
           description: 'Information whether the post in favorites list'
         likes:
-          $ref: '#/components/schemas/base_likes_info'
+          type: object
+          properties:
+            can_like:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can like the post'
+            can_publish:
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can repost'
+            count:
+              type: integer
+              minimum: 0
+              description: 'Likes number'
+            user_likes:
+              type: integer
+              description: 'Information whether current uer has liked the post'
+          additionalProperties: false
+          description: 'Count of likes'
         owner_id:
           type: integer
           description: "Wall owner's ID"
@@ -41834,7 +44575,14 @@ components:
           type: string
           description: 'Post text'
         views:
-          $ref: '#/components/schemas/wall_views'
+          type: object
+          properties:
+            count:
+              type: integer
+              minimum: 0
+              description: Count
+          additionalProperties: false
+          description: 'Count of views'
       additionalProperties: false
     wall_wallpost_attachment:
       type: object
@@ -41931,7 +44679,12 @@ components:
           description: 'Value of this field need to pass in wall.post/edit in donut_paid_duration'
           type: integer
         placeholder:
-          $ref: '#/components/schemas/wall_wallpost_donut_placeholder'
+          type: object
+          properties:
+            text:
+              type: string
+          additionalProperties: false
+          description: 'If placeholder was respond, text and all attachments will be hidden'
         can_publish_free_copy:
           description: 'Says whether group admin can post free copy of this donut post'
           type: boolean
@@ -41962,15 +44715,27 @@ components:
               items:
                 $ref: '#/components/schemas/wall_wallpost_full'
             can_edit:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can edit the post'
             created_by:
               type: integer
               description: 'Post creator ID (if post still can be edited)'
               format: int64
             can_delete:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can delete the post'
             can_pin:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether current user can pin the post'
             donut:
               $ref: '#/components/schemas/wall_wallpost_donut'
             is_pinned:
@@ -41979,7 +44744,11 @@ components:
             comments:
               $ref: '#/components/schemas/base_comments_info'
             marked_as_ads:
-              $ref: '#/components/schemas/base_bool_int'
+              type: integer
+              enum:
+                - 0
+                - 1
+              description: 'Information whether the post is marked as ads'
             topic_id:
               type: integer
               minimum: 0
@@ -42391,7 +45160,11 @@ components:
       type: object
       properties:
         can_post:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can comment the post'
         count:
           type: integer
           minimum: 0
@@ -42429,7 +45202,11 @@ components:
           items:
             $ref: '#/components/schemas/wall_comment_attachment'
         can_delete:
-          $ref: '#/components/schemas/base_bool_int'
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'Information whether current user can delete the comment'
         comments:
           $ref: '#/components/schemas/widgets_comment_replies'
         date:

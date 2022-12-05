@@ -1,6 +1,6 @@
 <?php
 
-namespace VkApi\Message\Template;
+namespace VkApi\Old\Message\Template;
 
 class Action
 {

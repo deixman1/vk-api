@@ -48,5 +48,7 @@ generate-vk-api-openapi:
 	$(DOCKER_CMD_PHP_CLI) php cli/app.php generate-vk-api-openapi
 concat-vk-api:
 	$(DOCKER_CMD_PHP_CLI) php cli/app.php concat-vk-api
+generate-classes:
+	openapi-generator-cli generate -i ./schemas/vk-api.yaml -g php -o ./api
 
 init: build composer-install

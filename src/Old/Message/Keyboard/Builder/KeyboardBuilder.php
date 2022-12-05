@@ -1,10 +1,10 @@
 <?php
 
-namespace VkApi\Keyboard\Builder;
+namespace VkApi\Old\Message\Keyboard\Builder;
 
-use VkApi\Keyboard\Buttons\Action\Type\Text;
-use VkApi\Keyboard\Buttons\Button;
-use VkApi\Keyboard\Keyboard;
+use VkApi\Old\Message\Keyboard\Buttons\Action\Type\Text;
+use VkApi\Old\Message\Keyboard\Buttons\Button;
+use VkApi\Old\Message\Keyboard\Keyboard;
 
 class KeyboardBuilder
 {
